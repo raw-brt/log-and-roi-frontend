@@ -1,0 +1,33 @@
+/* Sidebar */
+.sidebar-wrapper {
+  display: flex;
+  align-items: stretch;
+  background-color: #221E1F;
+}
+
+#sidebar {
+  min-width: 350px;
+  max-width: 350px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#projects {
+  color: #50E3C2;
+}
+
+
+
+/* List */
+
+
+
+
+/* List element */
+.list-group-item {
+  background-color: #221E1F;
+  color: #50E3C2;
+  text-align: left;
+}
