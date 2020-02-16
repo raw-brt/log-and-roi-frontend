@@ -15,6 +15,7 @@
 }
 
 #projects {
+  margin-left: 20px;
   color: #50E3C2;
 }
 
@@ -30,4 +31,11 @@
   background-color: #221E1F;
   color: #50E3C2;
   text-align: left;
+}
+
+
+/* User info */
+.username, .user-mail {
+  margin-left: 20px;
+  color: #fff;
 }

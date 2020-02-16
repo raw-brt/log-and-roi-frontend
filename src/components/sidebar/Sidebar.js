@@ -1,6 +1,7 @@
 import React from 'react';
 import List from './List'
 import '../sidebar/sidebar.css'
+import UserInfo from './UserInfo';
 
 const Sidebar = () => {
   return(
@@ -13,6 +14,7 @@ const Sidebar = () => {
 
         <List />
 
+        <UserInfo />
       </nav>
     </div>
   )
