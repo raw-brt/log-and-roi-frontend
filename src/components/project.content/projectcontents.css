@@ -1,0 +1,30 @@
+/* Project contents */
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* .project-contents {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+} */
+
+/* Project Financials */
+.project-financials {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 9.37rem;
+  margin-top: 0.625rem;
+}
+
+/* KPI Cards */
+
+/* Logs */
+

@@ -6,7 +6,7 @@ const dummyProjects = ["Ethereum ebook", "Cybertruck", "iPhone App", "Log and RO
 
 const ProjectsList = () => {
   return(
-    <ul>
+    <ul className="project-list col">
       { 
         dummyProjects.map((project, index) => 
         <ListElement key={index} projectName={project} />) 

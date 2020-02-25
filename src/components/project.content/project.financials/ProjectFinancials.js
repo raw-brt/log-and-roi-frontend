@@ -3,10 +3,14 @@ import KpiCard from './KpiCard';
 
 const ProjectFinancials = () => {
   return(
-    <div className="project-financials">
-      <KpiCard className="profit" value="22.978€" />
-      <KpiCard className="cost" value="4.500€" />
-      <KpiCard className="roi" value="510%" />
+    <div className="project-financials row">
+      <div className="profit-cost-column col-sm">
+        <KpiCard className="card profit" value="22.978€" title="Profit"/>
+        <KpiCard className="card cost" value="4.500€" title="Time invested"/>
+      </div>
+      <div className="roi-column col-sm">
+        <KpiCard className="card roi" value="510%" title="ROI"/>
+      </div>
     </div>
   )
 }
