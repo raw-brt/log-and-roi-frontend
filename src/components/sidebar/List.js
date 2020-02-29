@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ListElement from './ListElement';
 import '../sidebar/sidebar.css'
-
-const dummyProjects = ["Ethereum ebook", "Cybertruck", "iPhone App", "Log and ROI 2.0"];
+import LogAndRoiServices from '../../services/LogAndRoiServices';
+import AuthContext from '../../contexts/AuthContext';
 
 const ProjectsList = () => {
+  const value = useContext(AuthContext);
+  const [projects, setProjects] = useState([]);
+
+
+  useEffect(() => {
+    LogAndRoiServices.getProjects(value.currentUser)
+      .then(projects => {
+        setProjects(projects)
+      })
+      .catch(error => console.log(error))
+  });
+
   return(
     <ul className="project-list col">
       { 
-        dummyProjects.map((project, index) => 
+        projects.map((project, index) => 
         <ListElement key={index} projectName={project} />) 
       }
     </ul>
