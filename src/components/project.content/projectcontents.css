@@ -1,7 +1,7 @@
 /* Project contents */
 .home {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
 }
 
@@ -10,7 +10,66 @@
   flex-direction: column;
   width: 100%;
 } */
+.logs {
+  width: 100%;
+}
 
+.card {
+  padding: 1rem; 
+  border: none !important;
+  color: white;
+}
+
+.card.profit {
+  background-color: #5856D6;
+  color: white;
+}
+
+.card.cost {
+  background-color: #FF9500;
+  color: white;
+}
+
+.card.profit {
+  background-color: #5856D6;
+  color: white;
+}
+
+
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card-value {
+  font-weight: 200;
+  font-size: 2rem;
+}
+
+.custom-btn {
+  border: none;
+  border-radius: 3px;
+  background-color: #50E3C2;
+  color: white;
+  padding: 0.3rem 0.5rem;
+  font-weight: 700;
+}
+.log {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 2rem 0rem;
+  border-top: 1px solid rgb(230, 230, 230);
+}
+.log-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.log-date {
+  font-weight: 200;
+}
 /* Project Financials */
 .project-financials {
   display: flex;
