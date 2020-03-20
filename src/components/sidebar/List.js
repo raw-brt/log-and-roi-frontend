@@ -8,7 +8,6 @@ const ProjectsList = () => {
   const { currentUser } = useContext(AuthContext);
   const [projects, setProjects] = useState([]);
 
- console.log(projects)
   useEffect(() => {
     LogAndRoiServices.getProjects(currentUser)
       .then(projects => {

@@ -7,7 +7,12 @@ export class AuthContextProvider extends React.Component {
   state = { user: JSON.parse(localStorage.getItem('user'))}
 
   setUser = (user) => {
-    localStorage.setItem('user', user ? JSON.stringify(user) : null)
+    localStorage.setItem(
+      'user', 
+      user 
+      ? JSON.stringify(user) 
+      : null
+      )
     this.setState({ user }, () => console.log(this.state.user))
   };
 
