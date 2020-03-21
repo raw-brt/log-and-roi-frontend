@@ -34,7 +34,26 @@ ul {
 $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
 
+// Colors
+$fluor-green: #50E3C2;
+$medium-grey: #6D7276;
+
 // Sidebar
+
+// Projects list
+.project-active {
+  color: $fluor-green;
+}
+
+.project-inactive {
+  color: $medium-grey;
+}
+
+.ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
 // Add Project Overlay
 .add-project-overlay {
