@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import List from './List'
 import '../sidebar/sidebar.css'
 import UserInfo from './UserInfo';
+import AddProjectOverlay from './AddProjectOverlay';
 import add from '../../../src/assets/images/Add icon.svg'
 
-const Sidebar = ({ className }) => {
+const Sidebar = ({ className, activeProject, setActiveProject }) => {
   const [showAddOverlay, setShowAddOverlay] = useState(false)
 
   return(
@@ -16,8 +17,15 @@ const Sidebar = ({ className }) => {
             src={add} 
             alt="add-btn" 
             className="add-project-btn"
+            onClick={() => {
+              setShowAddOverlay(!showAddOverlay);
+            }}
             />
         </div>
+        <AddProjectOverlay
+          showAddOverlay={showAddOverlay}
+          setShowAddOverlay={setShowAddOverlay}
+        />
         <List />
         <UserInfo />
       </nav>

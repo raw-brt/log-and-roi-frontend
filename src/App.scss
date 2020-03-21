@@ -1,0 +1,74 @@
+// Font import
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+// General settings
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-family: 'Roboto', sans-serif;
+  color: #202020;
+  background-color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+// Variables
+$generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
+$generic-border: 1px solid #f1f1f1;
+
+// Sidebar
+
+// Add Project Overlay
+.add-project-overlay {
+  background: rgba(255, 255, 102, 0.5);
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  -webkit-transition: opacity 0,2s ease-in;
+  transition: opacity 0.2 ease-in;
+  height: calc(100vh);
+  overflow: auto;
+  display: flex;
+}
+
+.add-project-overlay-header {
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.add-project-overlay input {
+  
+}
+
+
+// Root CSS. Transpile eventually to SASS
+.App {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  background-color: white;
+}
