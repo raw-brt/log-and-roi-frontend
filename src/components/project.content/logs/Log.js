@@ -9,8 +9,8 @@ const Log = props => {
     <p className="log-title">{props.title}</p>
     <p className="log-date">{props.date}</p>
     <div  className="d-flex align-items-center">
-              <p className="log-date"><img src={dollar} alt="dollar" className="mr-1" style={{ maxWidth: '1.75rem'}}/>dinerito</p>
-            </div>
+      <p className="log-date"><img src={dollar} alt="dollar" className="mr-1" style={{ maxWidth: '1.75rem'}}/>dinerito</p>
+    </div>
     <LogTimer />
   </div>
   )

@@ -30,6 +30,10 @@ ul {
   padding: 0;
 }
 
+li {
+  cursor: pointer;
+}
+
 // Variables
 $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
@@ -59,7 +63,7 @@ $medium-grey: #6D7276;
 .add-project-overlay {
   background: rgba(255, 255, 102, 0.5);
   position: absolute;
-  margin: auto;
+  margin: 100px 0px 0px 0px;
   top: 0;
   left: 0;
   width: 100%;
@@ -69,7 +73,6 @@ $medium-grey: #6D7276;
   transition: opacity 0.2 ease-in;
   height: calc(100vh);
   overflow: auto;
-  display: flex;
 }
 
 .add-project-overlay-header {
@@ -77,8 +80,12 @@ $medium-grey: #6D7276;
   margin-bottom: 50px;
 }
 
+.add-project-overlay-cancel {
+  cursor: pointer;
+}
+
 .add-project-overlay input {
-  
+  margin-bottom: 20px;
 }
 
 

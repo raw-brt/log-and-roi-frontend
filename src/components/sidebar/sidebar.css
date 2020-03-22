@@ -1,7 +1,7 @@
 /* Sidebar */
 .sidebar-wrapper {
   display: flex;
-  align-items: stretch;
+  /* align-items: stretch; */
   background-color: #221E1F;
 }
 
