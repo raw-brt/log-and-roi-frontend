@@ -22,15 +22,17 @@ const ProjectsList = ({ activeProject, setActiveProject }) => {
         projects.map(project =>
           <li 
             key={project._id}
-            className={activeProject ? 'project-active' : 'project-inactive'}
+            className={activeProject 
+              ? 'project-active' 
+              : 'project-inactive'}
             role='button' 
             onClick={() => {
               setActiveProject(!activeProject);
             }} 
             >
             {activeProject 
-              ? <span className='bullet-selected'>◉</span> 
-              : <span className='bullet-not-selected'>◎</span>}
+              ? <span className='bullet-selected'>◉ </span> 
+              : <span className='bullet-not-selected'>◎ </span>}
               {project.projectName}
           </li>
         ) 

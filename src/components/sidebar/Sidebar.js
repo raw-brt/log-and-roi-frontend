@@ -10,7 +10,7 @@ const Sidebar = ({ className, activeProject, setActiveProject }) => {
   const [showAddOverlay, setShowAddOverlay] = useState(false)
 
   return(
-    <div className={className}>
+    <div className="sidebar-wrapper col-sm-3">
       <nav id="sidebar">
         <div className="sidebar-header d-flex justify-content-between">
           <h3 id="header-title">Projects</h3>
@@ -18,6 +18,7 @@ const Sidebar = ({ className, activeProject, setActiveProject }) => {
             src={add} 
             alt="add-btn" 
             className="add-project-btn"
+            role='button'
             onClick={() => {
               setShowAddOverlay(!showAddOverlay);
             }}

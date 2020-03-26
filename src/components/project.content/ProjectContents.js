@@ -3,9 +3,9 @@ import './projectcontents.css'
 import ProjectFinancials from './project.financials/ProjectFinancials';
 import LogList from './logs/LogList';
 
-const ProjectContents = props => {
+const ProjectContents = () => {
   return(
-    <div className={props.className}>
+    <div className='project-contents col-sm-7 d-flex flex-column m-auto'>
       <ProjectFinancials />
       <LogList />
     </div>

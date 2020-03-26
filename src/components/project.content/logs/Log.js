@@ -3,9 +3,8 @@ import LogTimer from './LogTimer';
 import dollar from '../../../assets/images/dollar.png'
 
 const Log = props => {
-  console.log(props)
   return(
-  <div className="log">
+  <div className="log flex-row">
     <p className="log-title">{props.title}</p>
     <p className="log-date">{props.date}</p>
     <div  className="d-flex align-items-center">

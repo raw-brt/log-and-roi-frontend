@@ -3,11 +3,11 @@ import Log from './Log';
 
 const LogList = () => {
   return(
-    <div className="log-list">
-      <div className="row">
-        <h3 className="log-list-header">Logs</h3>
+    <div className="log-list flex-column">
+      <div className="log-list-header row">
+        <h3>Logs</h3>
       </div>
-      <div className="row">
+      <div className="log-list row">
         <ul className="logs">
           <Log title="Wireframes" date="01/02/2020"/>
           <Log title="Mockups" date="02/02/2020"/>

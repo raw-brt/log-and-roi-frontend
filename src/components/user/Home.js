@@ -4,14 +4,14 @@ import ProjectContents from '../project.content/ProjectContents';
 
 const Home = () => {
   const [activeProject, setActiveProject] = useState(null);
-
+  console.log(activeProject)
+  
   return (
-    <div className="home">
-      <Sidebar 
-        className="sidebar-wrapper col-sm-3" 
+    <div className="home d-flex">
+      <Sidebar  
         activeProject={activeProject} 
         setActiveProject={setActiveProject} />
-      <ProjectContents className="project-contents col-sm-9" />
+      <ProjectContents />
     </div>
   )
 }
