@@ -34,6 +34,11 @@ $fluor-green: #50E3C2;
 $medium-grey: #6D7276;
 
 // Sidebar
+.sidebar-wrapper {
+  display: flex;
+  flex: 0 0 20.625rem;
+}
+
 .sidebar-header {
   margin-top: 20px;
 }
@@ -49,10 +54,6 @@ $medium-grey: #6D7276;
 
 .project-inactive {
   color: $medium-grey;
-}
-
-ul:nth-child(1) {
-  border-top: 1px solid $medium-grey;
 }
 
 #sidebar ul {
@@ -118,7 +119,17 @@ li {
 
 // Log list
 .log-list-header h3 {
-  margin-left: 30px;
+  margin: 33px 0px 20px 33px;
+}
+
+.project-contents ul {
+  padding-left: 35px;
+}
+
+// Modals
+
+.add-project-modal {
+  z-index: 1000;
 }
 
 // Root CSS. Transpile eventually to SASS

@@ -6,11 +6,11 @@ import UserInfo from './UserInfo';
 import AddProjectOverlay from './AddProjectOverlay';
 import add from '../../../src/assets/images/Add icon.svg'
 
-const Sidebar = ({ className, activeProject, setActiveProject }) => {
-  const [showAddOverlay, setShowAddOverlay] = useState(false)
+const Sidebar = ({ activeProject, setActiveProject }) => {
+  const [showAddOverlay, setShowAddOverlay] = useState(false);
 
   return(
-    <div className="sidebar-wrapper col-sm-3">
+    <div className="sidebar-wrapper">
       <nav id="sidebar">
         <div className="sidebar-header d-flex justify-content-between">
           <h3 id="header-title">Projects</h3>
