@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import '../user/userStyles.css';
 import LogAndRoiServices from '../../services/LogAndRoiServices';
@@ -6,7 +6,7 @@ import AuthContext from '../../contexts/AuthContext';
 import { Redirect } from 'react-router-dom';
 
 const Login = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const [currentUser, setCurrentUser] = useState(null);
   const [validateUser, setValidateUser] = useState(false)
   // const [error, setError] = useState(null);

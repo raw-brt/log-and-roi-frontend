@@ -10,8 +10,8 @@ export class AuthContextProvider extends React.Component {
     localStorage.setItem(
       'user', 
       user 
-      ? JSON.stringify(user) 
-      : null
+        ? JSON.stringify(user) 
+        : null
       )
     this.setState({ user }, () => console.log(this.state.user))
   };

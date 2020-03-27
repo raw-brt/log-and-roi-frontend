@@ -2,15 +2,18 @@ import React, { useState, useEffect, useContext } from 'react';
 import '../sidebar/sidebar.css'
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
+import {SelectedProjectContext}  from '../../contexts/SelectedProjectContext';
 
 const ProjectsList = ({ activeProject, setActiveProject }) => {
   const { currentUser } = useContext(AuthContext);
+  const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     LogAndRoiServices.getProjects(currentUser)
       .then(projects => {
         console.log(projects)
+        console.log(currentUser)
         setProjects(projects)
       })
       .catch(error => console.log(error))
