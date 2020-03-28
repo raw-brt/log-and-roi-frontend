@@ -9,7 +9,6 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const [currentUser, setCurrentUser] = useState(null);
   const [validateUser, setValidateUser] = useState(false)
-  // const [error, setError] = useState(null);
   const { setUser } = useContext(AuthContext); 
 
   const handleChange = (event) => {
