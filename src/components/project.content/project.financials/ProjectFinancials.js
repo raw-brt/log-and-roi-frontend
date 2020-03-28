@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import KpiCard from './KpiCard';
+import { SelectedProjectContext }  from '../../../contexts/SelectedProjectContext';
+import LogAndRoiServices from '../../../services/LogAndRoiServices';
 
 const ProjectFinancials = () => {
-  // Inject ROI here
+  const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
+
   const roi = -100
   const color =  roi > 0 ? '#34C759' : "#FE2360"
+
   return(
       <div className='project-financials flex-column'>
         <div className='project-financials-header row'>

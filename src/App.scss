@@ -50,6 +50,7 @@ $medium-grey: #6D7276;
 // Projects list
 .project-active {
   color: $fluor-green;
+  font-weight: 700;
 }
 
 .project-inactive {
@@ -79,7 +80,7 @@ li {
 }
 
 #sidebar li:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
 }
 
@@ -104,7 +105,7 @@ li {
 // Modals
 
 .add-project-modal {
-  z-index: 1000;
+  border-radius: 0.4375rem;
 }
 
 // Root CSS. Transpile eventually to SASS

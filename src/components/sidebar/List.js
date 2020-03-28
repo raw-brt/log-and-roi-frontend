@@ -4,17 +4,17 @@ import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
 import {SelectedProjectContext}  from '../../contexts/SelectedProjectContext';
 
-const ProjectsList = ({ activeProject, setActiveProject }) => {
+const ProjectsList = () => {
   const { currentUser } = useContext(AuthContext);
   const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
   const [projects, setProjects] = useState([]);
+  const [activeItem, setActiveItem] = useState(selectedProject);
 
   useEffect(() => {
     LogAndRoiServices.getProjects(currentUser)
       .then(projects => {
-        console.log(projects)
-        console.log(currentUser)
         setProjects(projects)
+        setActiveItem(projects[0]._id)
       })
       .catch(error => console.log(error))
   },[currentUser]);
@@ -25,15 +25,19 @@ const ProjectsList = ({ activeProject, setActiveProject }) => {
         projects.map(project =>
           <li 
             key={project._id}
-            className={activeProject 
-              ? 'project-active' 
-              : 'project-inactive'}
+            className={
+              activeItem === project._id
+                ? 'project-active' 
+                : 'project-inactive'
+            }
             role='button' 
             onClick={() => {
-              setActiveProject(!activeProject);
+              setActiveItem(project._id);
+              setSelectedProject(project._id)
+              console.log(activeItem)
             }} 
             >
-            {activeProject 
+            {activeItem === project._id
               ? <span className='bullet-selected'>◉ </span> 
               : <span className='bullet-not-selected'>◎ </span>}
               {project.projectName}

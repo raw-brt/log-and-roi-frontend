@@ -25,6 +25,7 @@ const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay }) => {
   return(
     showAddOverlay && (
       <Modal 
+        dialogClassName='add-project-modal'
         size='lg'
         centered
         show={showAddOverlay}
