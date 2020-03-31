@@ -4,7 +4,7 @@ import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
 import {SelectedProjectContext}  from '../../contexts/SelectedProjectContext';
 
-const ProjectsList = () => {
+const ProjectsList = ({ activeProject, setActiveProject, newProject }) => {
   const { currentUser } = useContext(AuthContext);
   const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
   const [projects, setProjects] = useState([]);
@@ -34,7 +34,6 @@ const ProjectsList = () => {
             onClick={() => {
               setActiveItem(project._id);
               setSelectedProject(project._id)
-              console.log(activeItem)
             }} 
             >
             {activeItem === project._id

@@ -2,19 +2,21 @@ import React, { useState, useContext } from 'react'
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
 import { Modal } from 'react-bootstrap';
+import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 
-const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay }) => {
+const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay, setNewProject }) => {
+  const { currentUser } = useContext(AuthContext);
+  const { setSelectedProject } = useContext(SelectedProjectContext);
+  
   const [project, setProject] = useState('');
   const [costPerHour, setCostPerHour] = useState(0);
   
-  const { currentUser } = useContext(AuthContext);
 
   const createProject = () => {
     const projectData = {
       projectName: project,
       costPerHour: costPerHour
     }
-    // console.log('call create project service here!')
     LogAndRoiServices.createProject(projectData, currentUser)
       .then(project => {
         console.log(`The project ${project} was created`);
@@ -22,7 +24,7 @@ const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay }) => {
       .catch(error => console.log(error))
   }
 
-  return(
+  return (
     showAddOverlay && (
       <Modal 
         dialogClassName='add-project-modal'
@@ -57,11 +59,12 @@ const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay }) => {
         <button 
           className='add-project-button btn btn-primary'
           type='button'
-          onClick={() => 
-            showAddOverlay
-              ? createProject() && setShowAddOverlay(!showAddOverlay)
-              : createProject()
-            }
+          onClick={() => {
+            createProject();
+            setShowAddOverlay(!showAddOverlay);
+            setNewProject(true);
+            // setSelectedProject(project._id);
+            }}
           >
             Create project
           </button>

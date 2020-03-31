@@ -28,7 +28,10 @@ const Sidebar = ({ activeProject, setActiveProject }) => {
           showAddOverlay={showAddOverlay}
           setShowAddOverlay={setShowAddOverlay}
         />
-        <List activeProject={activeProject} setActiveProject={setActiveProject} />
+        <List 
+          activeProject={activeProject} 
+          setActiveProject={setActiveProject}
+        />
         <UserInfo />
       </nav>
     </div>

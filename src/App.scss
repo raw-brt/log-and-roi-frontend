@@ -57,6 +57,10 @@ $medium-grey: #6D7276;
   color: $medium-grey;
 }
 
+#sidebar {
+  flex-basis: 19rem;
+}
+
 #sidebar ul {
   margin: 0;
   padding: 0;
@@ -72,7 +76,7 @@ li {
   cursor: pointer;
   margin: 1.25rem 0 1.25rem 1.115rem;
   font-size: 1.3rem;
-  flex-basis: 100%;
+  flex-basis: 19.75rem;
 }
 
 .bullet-selected, .bullet-not-selected {
