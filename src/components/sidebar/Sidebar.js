@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import List from './List'
+import ProjectsList from './ProjectsList'
 import '../sidebar/sidebar.css'
 // import AuthContext from '../../contexts/AuthContext';
 import UserInfo from './UserInfo';
@@ -8,6 +8,7 @@ import add from '../../../src/assets/images/Add icon.svg'
 
 const Sidebar = ({ activeProject, setActiveProject }) => {
   const [showAddOverlay, setShowAddOverlay] = useState(false);
+  const [projectHasBeenCreated, setProjectHasBeenCreated] = useState(null);
 
   return(
     <div className="sidebar-wrapper">
@@ -27,10 +28,10 @@ const Sidebar = ({ activeProject, setActiveProject }) => {
         <AddProjectOverlay
           showAddOverlay={showAddOverlay}
           setShowAddOverlay={setShowAddOverlay}
+          setProjectHasBeenCreated={setProjectHasBeenCreated}
         />
-        <List 
-          activeProject={activeProject} 
-          setActiveProject={setActiveProject}
+        <ProjectsList
+          projectHasBeenCreated={projectHasBeenCreated}
         />
         <UserInfo />
       </nav>

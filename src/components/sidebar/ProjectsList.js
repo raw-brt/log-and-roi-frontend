@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import '../sidebar/sidebar.css'
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
-import {SelectedProjectContext}  from '../../contexts/SelectedProjectContext';
+import { SelectedProjectContext }  from '../../contexts/SelectedProjectContext';
 
-const ProjectsList = ({ activeProject, setActiveProject, newProject }) => {
+const ProjectsList = ({ projectHasBeenCreated }) => {
   const { currentUser } = useContext(AuthContext);
   const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
   const [projects, setProjects] = useState([]);
@@ -17,7 +17,7 @@ const ProjectsList = ({ activeProject, setActiveProject, newProject }) => {
         setActiveItem(projects[0]._id)
       })
       .catch(error => console.log(error))
-  },[currentUser]);
+  },[currentUser, projectHasBeenCreated]);
 
   return(
     <ul className="project-list col">

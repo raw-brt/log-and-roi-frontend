@@ -4,7 +4,7 @@ import AuthContext from '../../contexts/AuthContext';
 import { Modal } from 'react-bootstrap';
 import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 
-const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay, setNewProject }) => {
+const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay, setProjectHasBeenCreated }) => {
   const { currentUser } = useContext(AuthContext);
   const { setSelectedProject } = useContext(SelectedProjectContext);
   
@@ -62,8 +62,8 @@ const AddProjectOverlay = ({ showAddOverlay, setShowAddOverlay, setNewProject })
           onClick={() => {
             createProject();
             setShowAddOverlay(!showAddOverlay);
-            setNewProject(true);
-            // setSelectedProject(project._id);
+            setProjectHasBeenCreated(project);
+            setSelectedProject(project._id);
             }}
           >
             Create project
