@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { FaTrashAlt } from 'react-icons/fa'
 import '../sidebar/sidebar.css'
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
@@ -23,24 +24,27 @@ const ProjectsList = ({ projectHasBeenCreated }) => {
     <ul className="project-list col">
       { 
         projects.map(project =>
-          <li 
-            key={project._id}
-            className={
-              activeItem === project._id
-                ? 'project-active' 
-                : 'project-inactive'
-            }
-            role='button' 
-            onClick={() => {
-              setActiveItem(project._id);
-              setSelectedProject(project._id)
-            }} 
-            >
-            {activeItem === project._id
-              ? <span className='bullet-selected'>◉ </span> 
-              : <span className='bullet-not-selected'>◎ </span>}
-              {project.projectName}
-          </li>
+            <li 
+              key={project._id}
+              className={
+                activeItem === project._id
+                  ? 'project-active' 
+                  : 'project-inactive'
+              }
+              role='button' 
+              onClick={() => {
+                setActiveItem(project._id);
+                setSelectedProject(project._id)
+              }} 
+              >
+              <div className='selector-plus-name'>
+                {activeItem === project._id
+                  ? <span className='bullet-selected'>◉ </span> 
+                  : <span className='bullet-not-selected'>◎ </span>}
+                  {project.projectName}
+              </div>
+              <span><FaTrashAlt className='delete-icon'/></span>
+            </li>
         ) 
       }
     </ul>

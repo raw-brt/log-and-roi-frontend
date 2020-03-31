@@ -83,9 +83,18 @@ li {
   font-size: 1.3rem;
 }
 
+#sidebar li {
+  display: flex;
+  justify-content: space-between;
+}
+
 #sidebar li:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
+}
+
+#sidebar li:hover .delete-icon{
+  display: initial;
 }
 
 // Project contents
@@ -120,4 +129,10 @@ li {
 
 .content {
   background-color: white;
+}
+
+// List element
+
+.delete-icon {
+  display: none;
 }
