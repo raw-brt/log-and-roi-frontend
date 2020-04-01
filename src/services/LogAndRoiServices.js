@@ -26,7 +26,7 @@ const register = data => http.post('/users', data);
 const getProjects = (user) => http.get(`/user/${user.id}/projects`);
 const createProject = (data, user) => http.post(`/${user.id}/projects/new`, data);
 const updateProject = (data, project) => http.patch(`/projects/${project.id}`, data);
-const deleteProject = (project) => http.delete(`/projects/${project.id}`);
+const deleteProject = (projectId) => http.delete(`/projects/${projectId}`);
 
 //Logs
 const getLogs = (project) => http.get(`/${project.id}/logs`);

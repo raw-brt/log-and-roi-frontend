@@ -9,6 +9,7 @@ import add from '../../../src/assets/images/Add icon.svg'
 const Sidebar = ({ activeProject, setActiveProject }) => {
   const [showAddOverlay, setShowAddOverlay] = useState(false);
   const [projectHasBeenCreated, setProjectHasBeenCreated] = useState(null);
+  const [projectHasBeenDeleted, setProjectHasBeenDeleted] = useState(null);
 
   return(
     <div className="sidebar-wrapper">
@@ -32,6 +33,8 @@ const Sidebar = ({ activeProject, setActiveProject }) => {
         />
         <ProjectsList
           projectHasBeenCreated={projectHasBeenCreated}
+          projectHasBeenDeleted={projectHasBeenDeleted}
+          setProjectHasBeenDeleted={setProjectHasBeenDeleted}
         />
         <UserInfo />
       </nav>
