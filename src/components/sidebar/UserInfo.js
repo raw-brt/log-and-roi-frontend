@@ -8,7 +8,6 @@ const UserInfo = () => {
     <div className="user-info">
       <h5 className="username">{currentUser.username}</h5>
       <p className="user-mail">{currentUser.email}</p>
-      {/* <img src="" className="user-settings" alt="User settings"></img> */}
     </div>
   )
 }

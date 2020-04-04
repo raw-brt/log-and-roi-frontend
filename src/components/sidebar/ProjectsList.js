@@ -6,14 +6,11 @@ import AuthContext from '../../contexts/AuthContext';
 import { SelectedProjectContext }  from '../../contexts/SelectedProjectContext';
 import DeleteProjectOverlay from './DeleteProjectOverlay';
 
-const ProjectsList = ({ 
-  projectHasBeenCreated, 
-  projectHasBeenDeleted, 
-  setProjectHasBeenDeleted 
-  }) => {
+const ProjectsList = ({ projectHasBeenCreated, setProjectHasBeenDeleted }) => {
     
     const { currentUser } = useContext(AuthContext);
     const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
+    
     const [projects, setProjects] = useState([]);
     const [activeItem, setActiveItem] = useState(selectedProject);
     const [showDeleteOverlay, setShowDeleteOverlay] = useState(false);
@@ -21,11 +18,13 @@ const ProjectsList = ({
     useEffect(() => {
       LogAndRoiServices.getProjects(currentUser)
         .then(projects => {
-          setProjects(projects)
-          setActiveItem(projects[0]._id)
+          setProjects(projects);
+          // setActiveItem(projects[0]._id);
+          // setSelectedProject(projects[0]._id);
         })
         .catch(error => console.log(error))
-    },[currentUser, projectHasBeenCreated]);
+        console.log(`Selected -> ${selectedProject} ; Active -> ${activeItem}`)
+    },[showDeleteOverlay]);
 
     return(
       <>
@@ -47,7 +46,7 @@ const ProjectsList = ({
                   role='button' 
                   onClick={() => {
                     setActiveItem(project._id);
-                    setSelectedProject(project._id)
+                    setSelectedProject(project._id);
                   }} 
                   >
                   <div className='selector-plus-name'>

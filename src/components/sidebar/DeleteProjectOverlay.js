@@ -1,21 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal } from 'react-bootstrap';
-import AuthContext from '../../contexts/AuthContext';
-import SelectedProjectProvider, { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
+import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 
 
 const DeleteProjectOverlay = ({ showDeleteOverlay, setShowDeleteOverlay, setProjectHasBeenDeleted }) => {
-  const { currentUser } = useContext(AuthContext);
-  const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
-
+  const { selectedProject } = useContext(SelectedProjectContext);
+  
   const deleteProject = (projectId) => {
     LogAndRoiServices.deleteProject(projectId)
-      .then(project => (console.log(`${project} has been deleted`)))
-      .catch(error => console.log('Something went wrong while deleting project'))
+      .then(() => (console.log(`The project with this ${projectId} has been deleted`)))
+      .catch(error => console.log(`Something went wrong while deleting project -> ${error}`))
   } 
 
-  return(
+  return (
     showDeleteOverlay && (
       <Modal
         dialogClassName='delete-project-modal'
@@ -36,9 +34,9 @@ const DeleteProjectOverlay = ({ showDeleteOverlay, setShowDeleteOverlay, setProj
             className='delete-project-button btn btn-primary'
             type='button'
             onClick={() => {
+              setProjectHasBeenDeleted(selectedProject._id);
               deleteProject(selectedProject._id);
               setShowDeleteOverlay(!showDeleteOverlay);
-              setProjectHasBeenDeleted(selectedProject);
             }}
           >Delete project</button>
           <button

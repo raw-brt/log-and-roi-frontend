@@ -25,8 +25,13 @@ const AddProjectOverlay = ({
         .then(project => {
           console.log(`The project ${project} was created`);
         })
+        .then(() => {
+          setProject('');
+          setCostPerHour(0);
+        })
         .catch(error => console.log(error))
     }
+
 
     return (
       showAddOverlay && (

@@ -5,8 +5,9 @@ import '../sidebar/sidebar.css'
 import UserInfo from './UserInfo';
 import AddProjectOverlay from './AddProjectOverlay';
 import add from '../../../src/assets/images/Add icon.svg'
+import DeleteProjectOverlay from './DeleteProjectOverlay';
 
-const Sidebar = ({ activeProject, setActiveProject }) => {
+const Sidebar = () => {
   const [showAddOverlay, setShowAddOverlay] = useState(false);
   const [projectHasBeenCreated, setProjectHasBeenCreated] = useState(null);
   const [projectHasBeenDeleted, setProjectHasBeenDeleted] = useState(null);
@@ -33,7 +34,6 @@ const Sidebar = ({ activeProject, setActiveProject }) => {
         />
         <ProjectsList
           projectHasBeenCreated={projectHasBeenCreated}
-          projectHasBeenDeleted={projectHasBeenDeleted}
           setProjectHasBeenDeleted={setProjectHasBeenDeleted}
         />
         <UserInfo />
