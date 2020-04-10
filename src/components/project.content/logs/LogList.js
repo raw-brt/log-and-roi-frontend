@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Log from './Log';
+import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
+import LogAndRoiServices from '../../../services/LogAndRoiServices';
 
 const LogList = () => {
+  const { selectedProject } = useContext(SelectedProjectContext)
+  const [logs, setLogs] = useState([]);
+
+  useEffect(() => {
+    LogAndRoiServices.getLogs(selectedProject)
+      .then((logs) => {
+        setLogs(logs)
+      })
+      .catch(error => console.log(error))
+  }, [selectedProject])
+
   return(
     <div className="log-list flex-column">
       <div className="log-list-header row">
@@ -9,6 +22,13 @@ const LogList = () => {
       </div>
       <div className="log-list row">
         <ul className="logs">
+          {logs && (
+            logs.map((log) => (
+              <li key={log._id}>
+                <Log title={log.logName} date={log.createdAt.slice(0, 10)} />
+              </li>
+            ))
+          )}
           <Log title="Wireframes" date="01/02/2020"/>
           <Log title="Mockups" date="02/02/2020"/>
           <Log title="API design" date="04/02/2020"/>

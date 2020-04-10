@@ -29,7 +29,7 @@ const updateProject = (data, project) => http.patch(`/projects/${project.id}`, d
 const deleteProject = (projectId) => http.delete(`/projects/${projectId}`);
 
 //Logs
-const getLogs = (project) => http.get(`/${project.id}/logs`);
+const getLogs = (projectId) => http.get(`/${projectId}/logs`);
 const createLog = (data, project) => http.post(`/${project.id}/logs/new`, data);
 const updateLog = (data, log) => http.patch(`/logs/${log.id}/update`, data);
 const updateLogStatus = (data, log) => http.patch(`/logs/${log.id}/status`, data);

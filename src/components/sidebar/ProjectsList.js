@@ -45,6 +45,7 @@ const ProjectsList = ({ projectHasBeenCreated, setProjectHasBeenDeleted }) => {
             onClick={() => {
               setActiveItem(project._id);
               setSelectedProject(project._id);
+              console.log(selectedProject)
             }}
           >
             <div className="selector-plus-name">
