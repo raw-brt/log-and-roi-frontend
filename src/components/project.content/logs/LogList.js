@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Log from './Log';
 import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
+import add from '../../../assets/images/Add icon white.svg';
 
 const LogList = () => {
   const { selectedProject } = useContext(SelectedProjectContext)
@@ -17,16 +18,22 @@ const LogList = () => {
 
   return(
     <div className="log-list flex-column">
-      <div className="log-list-header row">
+      <div className="log-list-header d-flex justify-content-between">
         <h3>Logs</h3>
+        <img
+          src={add}
+          alt='add-button'
+          className='add-log-button'
+          role='button'
+        />
       </div>
       <div className="log-list row">
         <ul className="logs">
           {logs && (
             logs.map((log) => (
-              <li key={log._id}>
+              // <li key={log._id}>
                 <Log title={log.logName} date={log.createdAt.slice(0, 10)} />
-              </li>
+              // </li>
             ))
           )}
           <Log title="Wireframes" date="01/02/2020"/>

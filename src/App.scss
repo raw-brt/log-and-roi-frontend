@@ -109,11 +109,20 @@ li {
 
 // Log list
 .log-list-header h3 {
-  margin: 33px 0px 20px 33px;
+  margin: 33px 0px 20px 22px;
 }
 
 .project-contents ul {
   padding-left: 35px;
+}
+
+.logs li {
+  list-style-type: none;
+  font-size: 1em;
+}
+
+.add-log-button {
+  margin-top: 33px;
 }
 
 // Modals

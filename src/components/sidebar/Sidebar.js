@@ -19,7 +19,7 @@ const Sidebar = () => {
           <h3 id="header-title">Projects</h3>
           <img
             src={add}
-            alt="add-btn"
+            alt="add-button"
             className="add-project-btn"
             role="button"
             onClick={() => {
