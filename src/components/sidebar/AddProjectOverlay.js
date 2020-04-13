@@ -48,7 +48,7 @@ const AddProjectOverlay = ({
           </Modal.Header>
           <Modal.Body>
           <input 
-            className='add-project'
+            className='add-project-input'
             label='Add a name to your project'
             placeholder='Name'
             type='text'
@@ -56,7 +56,7 @@ const AddProjectOverlay = ({
             onChange={event => setProject(event.target.value)}
           />
           <input 
-            className='add-cost'
+            className='add-cost-input'
             label='Add a cost-per-hour rate for your project'
             placeholder='Cost per hour'
             type='text'
@@ -80,7 +80,7 @@ const AddProjectOverlay = ({
             <button
               className='cancel-project-button btn btn-secondary'
               type='button'
-              onClick={() => {setShowAddOverlay(!showAddOverlay);}}
+              onClick={() => setShowAddOverlay(!showAddOverlay)}
             >
               Cancel
             </button>

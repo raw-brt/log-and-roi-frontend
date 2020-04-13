@@ -19,9 +19,12 @@ const ProjectsList = ({ projectHasBeenCreated, setProjectHasBeenDeleted }) => {
   useEffect(() => {
     LogAndRoiServices.getProjects(currentUser)
       .then((projects) => {
+        if (selectedProject === null || selectedProject === undefined) {
+          setSelectedProject(projects[0]._id)
+          setActiveItem(projects[0]._id)
+          console.log(selectedProject, activeItem)
+        }
         setProjects(projects);
-        // setActiveItem(projects[0]._id);
-        // setSelectedProject(projects[0]._id);
       })
       .catch((error) => console.log(error));
     console.log(`Selected -> ${selectedProject} ; Active -> ${activeItem}`);

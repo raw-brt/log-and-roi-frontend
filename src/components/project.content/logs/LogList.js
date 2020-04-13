@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Log from './Log';
+import AddLogOverlay from './AddLogOverlay'
 import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import add from '../../../assets/images/Add icon white.svg';
@@ -7,14 +8,15 @@ import add from '../../../assets/images/Add icon white.svg';
 const LogList = () => {
   const { selectedProject } = useContext(SelectedProjectContext)
   const [logs, setLogs] = useState([]);
+  const [showAddLogOverlay, setShowAddLogOverlay] = useState(false);
 
   useEffect(() => {
     LogAndRoiServices.getLogs(selectedProject)
       .then((logs) => {
-        setLogs(logs)
+        setLogs(logs);
       })
       .catch(error => console.log(error))
-  }, [selectedProject])
+  }, [selectedProject, showAddLogOverlay])
 
   return(
     <div className="log-list flex-column">
@@ -25,15 +27,16 @@ const LogList = () => {
           alt='add-button'
           className='add-log-button'
           role='button'
+          onClick={() => {
+            setShowAddLogOverlay(!showAddLogOverlay);
+          }}
         />
       </div>
       <div className="log-list row">
         <ul className="logs">
           {logs && (
             logs.map((log) => (
-              // <li key={log._id}>
-                <Log title={log.logName} date={log.createdAt.slice(0, 10)} />
-              // </li>
+              <Log key={log._id} title={log.logName} date={log.createdAt.slice(0, 10)} />
             ))
           )}
           <Log title="Wireframes" date="01/02/2020"/>
@@ -42,6 +45,10 @@ const LogList = () => {
           <Log title="Front architecture" date="07/02/2020"/>
         </ul>
       </div>
+      <AddLogOverlay
+        showAddLogOverlay={showAddLogOverlay}
+        setShowAddLogOverlay={setShowAddLogOverlay}
+      />
     </div>
   )
 }

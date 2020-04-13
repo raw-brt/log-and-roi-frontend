@@ -99,6 +99,10 @@ li {
 }
 
 // Project contents
+.project-contents {
+  overflow-y: auto;
+}
+
 .project-financials {
   margin: 20px 20px 20px 20px;
 }
@@ -123,6 +127,7 @@ li {
 
 .add-log-button {
   margin-top: 33px;
+  cursor: pointer;
 }
 
 // Modals
