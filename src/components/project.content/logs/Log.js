@@ -4,7 +4,7 @@ import dollar from "../../../assets/images/dollar.png";
 
 const Log = (props) => {
   return (
-    <div className="log flex-row">
+    <div className="log flex-row justify-content-between align-items-center">
       <p className="log-title">{props.title}</p>
       <p className="log-date">{props.date}</p>
       <div className="d-flex align-items-center">

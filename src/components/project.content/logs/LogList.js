@@ -27,9 +27,7 @@ const LogList = () => {
           alt='add-button'
           className='add-log-button'
           role='button'
-          onClick={() => {
-            setShowAddLogOverlay(!showAddLogOverlay);
-          }}
+          onClick={() => {setShowAddLogOverlay(!showAddLogOverlay)}}
         />
       </div>
       <div className="log-list row">
