@@ -7,18 +7,16 @@ const Log = (props) => {
     <div className="log flex-row justify-content-between align-items-center">
       <p className="log-title">{props.title}</p>
       <p className="log-date">{props.date}</p>
-      <div className="d-flex align-items-center">
-        <p className="log-date">
-          <img
-            src={dollar}
-            alt="dollar"
-            className="mr-1"
-            style={{ maxWidth: "1.75rem" }}
-          />
-          dinerito
-        </p>
+      <div className="log-cost d-flex align-items-center">
+        <img
+          src={dollar}
+          alt="dollar"
+          className="mr-1"
+          style={{ maxWidth: "1.75rem" }}
+        />
+          Coste
       </div>
-      <LogTimer />
+      <LogTimer className='log-timer'/>
     </div>
   );
 };

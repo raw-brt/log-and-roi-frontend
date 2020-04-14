@@ -134,6 +134,26 @@ li {
   margin-bottom: 0px;
 }
 
+.log-title {
+  flex-basis: 8rem;
+}
+
+.log-date {
+  flex-basis: 2rem;
+}
+
+.log-cost {
+  flex-basis: 1rem;
+}
+
+.log-timer {
+  flex-basis: 2rem;
+}
+
+.control-btn {
+  cursor: pointer;
+}
+
 // Modals
 
 .add-project-modal {

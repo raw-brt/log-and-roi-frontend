@@ -1,14 +1,19 @@
 import React from 'react';
 import Timer from 'react-compound-timer'
 import clock from '../../../assets/images/clock-regular.svg'
-import { FaPlay, FaPause, FaStop, FaRedoAlt, FaTrashAlt } from 'react-icons/fa'
-import dollar from '../../../assets/images/dollar.png'
 import playIcon from '../../../assets/images/play.svg';
 import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 import resetIcon from '../../../assets/images/reset.svg';
+import trashIcon from '../../../assets/images/Trash button.svg';
+import LogAndRoiServices from '../../../services/LogAndRoiServices';
 
 const LogTimer = () => {
+
+  // const deleteLog = () => {
+  //   LogAndRoiServices
+  // }
+
   return (
     <Timer
       formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}
@@ -26,11 +31,12 @@ const LogTimer = () => {
               <img src={clock} alt="clock" className="pr-2" style={{ width: '1.75rem' }}/><Timer.Hours />:<Timer.Minutes />:<Timer.Seconds /> 
             </div>
           </div>
-          <div className="d-flex justify-content-around" style={{ minWidth: '330px' }}>
-            <img src={playIcon} className="custom-btn" alt='play' onClick={start}></img>
-            <img src={pauseIcon} className="custom-btn" alt='pause' onClick={pause}></img>
-            <img src={stopIcon} className="custom-btn" alt='stop' onClick={stop}></img>
-            <img src={resetIcon} className="custom-btn" alt='reset' onClick={reset}></img>
+          <div className="d-flex justify-content-between" style={{ minWidth: '9rem' }}>
+            <img src={playIcon} className="control-btn" alt='play' role='button' onClick={start}></img>
+            <img src={pauseIcon} className="control-btn" alt='pause' role='button' onClick={pause}></img>
+            <img src={stopIcon} className="control-btn" alt='stop' role='button' onClick={stop}></img>
+            <img src={resetIcon} className="control-btn" alt='reset' role='button' onClick={reset}></img>
+            <img src={trashIcon} className="control-btn" alt='delete' role='button' onClick={console.log('Add delete function here')}></img>
           </div>
         </React.Fragment>
     )}
