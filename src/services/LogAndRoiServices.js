@@ -33,7 +33,7 @@ const getLogs = (projectId) => http.get(`/${projectId}/logs`);
 const createLog = (data, projectId) => http.post(`/${projectId}/logs/new`, data);
 const updateLog = (data, log) => http.patch(`/logs/${log.id}/update`, data);
 const updateLogStatus = (data, log) => http.patch(`/logs/${log.id}/status`, data);
-const deleteLog = (log) => http.delete(`/logs/${log.id}/delete`);
+const deleteLog = (logId) => http.delete(`/logs/${logId}/delete`);
 
 export default {
   login,

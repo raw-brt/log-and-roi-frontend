@@ -5,14 +5,8 @@ import playIcon from '../../../assets/images/play.svg';
 import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 import resetIcon from '../../../assets/images/reset.svg';
-import trashIcon from '../../../assets/images/Trash button.svg';
-import LogAndRoiServices from '../../../services/LogAndRoiServices';
 
 const LogTimer = () => {
-
-  // const deleteLog = () => {
-  //   LogAndRoiServices
-  // }
 
   return (
     <Timer
@@ -36,7 +30,6 @@ const LogTimer = () => {
             <img src={pauseIcon} className="control-btn" alt='pause' role='button' onClick={pause}></img>
             <img src={stopIcon} className="control-btn" alt='stop' role='button' onClick={stop}></img>
             <img src={resetIcon} className="control-btn" alt='reset' role='button' onClick={reset}></img>
-            <img src={trashIcon} className="control-btn" alt='delete' role='button' onClick={console.log('Add delete function here')}></img>
           </div>
         </React.Fragment>
     )}

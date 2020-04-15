@@ -6,7 +6,7 @@ import AuthContext from "../../contexts/AuthContext";
 import { SelectedProjectContext } from "../../contexts/SelectedProjectContext";
 import DeleteProjectOverlay from "./DeleteProjectOverlay";
 
-const ProjectsList = ({ projectHasBeenCreated, setProjectHasBeenDeleted }) => {
+const ProjectsList = ({ setProjectHasBeenDeleted }) => {
   const { currentUser } = useContext(AuthContext);
   const { selectedProject, setSelectedProject } = useContext(
     SelectedProjectContext
@@ -22,7 +22,7 @@ const ProjectsList = ({ projectHasBeenCreated, setProjectHasBeenDeleted }) => {
         if (selectedProject === null || selectedProject === undefined) {
           setSelectedProject(projects[0]._id)
           setActiveItem(projects[0]._id)
-          console.log(selectedProject, activeItem)
+
         }
         setProjects(projects);
       })
