@@ -1,9 +1,16 @@
 import React from "react";
 import LogTimer from "./LogTimer";
+import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
 import dollar from "../../../assets/images/dollar.png";
 import trashIcon from '../../../assets/images/Trash button.svg';
 
-const Log = ({ identifier, title, date, deleteLog }) => {
+const Log = ({ 
+    identifier, 
+    title, 
+    date
+  }) => {
+
+    const { setSelectedLog } = useContext(SelectedLogContext);
 
   return (
     <div className="log flex-row justify-content-between align-items-center">
@@ -22,11 +29,10 @@ const Log = ({ identifier, title, date, deleteLog }) => {
         <img
           src={trashIcon}
           alt='delete'
-          className='mr-1'
-          style={{ maxWidth: "1.75rem" }}
+          className='log-delete-icon mr-1'
           onClick={() => {
-            deleteLog(identifier)
-            console.log(`The log with the ${identifier} has been deleted`)
+            setSelectedLog(identifier)
+
             }
           }
         ></img>

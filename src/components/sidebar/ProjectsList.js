@@ -8,9 +8,7 @@ import DeleteProjectOverlay from "./DeleteProjectOverlay";
 
 const ProjectsList = ({ setProjectHasBeenDeleted }) => {
   const { currentUser } = useContext(AuthContext);
-  const { selectedProject, setSelectedProject } = useContext(
-    SelectedProjectContext
-  );
+  const { selectedProject, setSelectedProject, setSelectedProjectName } = useContext(SelectedProjectContext);
 
   const [projects, setProjects] = useState([]);
   const [activeItem, setActiveItem] = useState(selectedProject);
@@ -22,7 +20,7 @@ const ProjectsList = ({ setProjectHasBeenDeleted }) => {
         if (selectedProject === null || selectedProject === undefined) {
           setSelectedProject(projects[0]._id)
           setActiveItem(projects[0]._id)
-
+          setSelectedProjectName(projects[0].projectName)
         }
         setProjects(projects);
       })
@@ -32,11 +30,6 @@ const ProjectsList = ({ setProjectHasBeenDeleted }) => {
 
   return (
     <>
-      <DeleteProjectOverlay
-        showDeleteOverlay={showDeleteOverlay}
-        setShowDeleteOverlay={setShowDeleteOverlay}
-        setProjectHasBeenDeleted={setProjectHasBeenDeleted}
-      />
       <ul className="project-list col">
         {projects.map((project) => (
           <li
@@ -48,6 +41,7 @@ const ProjectsList = ({ setProjectHasBeenDeleted }) => {
             onClick={() => {
               setActiveItem(project._id);
               setSelectedProject(project._id);
+              setSelectedProjectName(project.projectName);
               console.log(selectedProject)
             }}
           >
@@ -69,6 +63,11 @@ const ProjectsList = ({ setProjectHasBeenDeleted }) => {
           </li>
         ))}
       </ul>
+      <DeleteProjectOverlay
+        showDeleteOverlay={showDeleteOverlay}
+        setShowDeleteOverlay={setShowDeleteOverlay}
+        setProjectHasBeenDeleted={setProjectHasBeenDeleted}
+      />
     </>
   );
 };

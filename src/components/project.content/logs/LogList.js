@@ -2,19 +2,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import Log from './Log';
 import AddLogOverlay from './AddLogOverlay'
 import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
+import { SelectedLogContext } from '../../../contexts/';
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import add from '../../../assets/images/Add icon white.svg';
+import DeleteLogOverlay from './DeleteLogOverlay';
 
 const LogList = () => {
   const { selectedProject } = useContext(SelectedProjectContext);
+  const { selectedLog, setSelectedLog } = useContext(SelectedLogContext);
+
   const [logs, setLogs] = useState([]);
   const [showAddLogOverlay, setShowAddLogOverlay] = useState(false);
-
-  const deleteLog = (logId) => {
-    LogAndRoiServices.deleteLog(logId)
-      .then(logId => `The log with the id ${logId} was deleted`)
-      .catch(error => `Something went wrong when trying to delete the log with the id ${logId} -> ${error}`)
-  }
+  const [showDeleteLogOverlay, setShowDeleteLogOverlay] = useState(false);
+  const [deletedLog, setDeletedLog] = useState(false);
 
   useEffect(() => {
     LogAndRoiServices.getLogs(selectedProject)
@@ -22,7 +22,7 @@ const LogList = () => {
         setLogs(logs);
       })
       .catch(error => console.log(error))
-  }, [selectedProject, showAddLogOverlay])
+  }, [selectedProject, showAddLogOverlay, deletedLog]);
 
   return(
     <div className="log-list flex-column">
@@ -33,14 +33,16 @@ const LogList = () => {
           alt='add-button'
           className='add-log-button'
           role='button'
-          onClick={() => {setShowAddLogOverlay(!showAddLogOverlay)}}
+          onClick={() => {
+            setShowAddLogOverlay(!showAddLogOverlay)
+          }}
         />
       </div>
       <div className="log-list row">
         <ul className="logs">
           {logs && (
             logs.map((log, index) => (
-              <Log key={index} identifier={log._id} title={log.logName} deleteLog={deleteLog} date={log.createdAt.slice(0, 10)} />
+              <Log key={log._id} identifier={log} title={log.logName} date={log.createdAt.slice(0, 10)} />
             ))
           )}
           <Log title="Wireframes" date="01/02/2020"/>
@@ -53,8 +55,14 @@ const LogList = () => {
         showAddLogOverlay={showAddLogOverlay}
         setShowAddLogOverlay={setShowAddLogOverlay}
       />
+      <DeleteLogOverlay 
+        showDeleteLogOverlay={showDeleteLogOverlay}
+        setShowDeleteLogOverlay={setShowDeleteLogOverlay}
+        deletedLog={deletedLog}
+        setDeletedLog={setDeletedLog}
+      />
     </div>
-  )
-}
+  );
+};
 
 export default LogList;

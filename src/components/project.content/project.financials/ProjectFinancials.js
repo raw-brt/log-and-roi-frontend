@@ -4,7 +4,7 @@ import { SelectedProjectContext }  from '../../../contexts/SelectedProjectContex
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
 
 const ProjectFinancials = () => {
-  const { selectedProject, setSelectedProject } = useContext(SelectedProjectContext);
+  const { selectedProject, selectedProjectName } = useContext(SelectedProjectContext);
 
   const roi = -100
   const color =  roi > 0 ? '#34C759' : "#FE2360"
@@ -12,7 +12,7 @@ const ProjectFinancials = () => {
   return(
       <div className='project-financials flex-column'>
         <div className='project-financials-header row'>
-          <h3>Project name</h3>
+          <h3>{selectedProjectName}</h3>
         </div>
         <div className='project-financial-cards row'>
           <div className="profit-cost-column col-sm">

@@ -4,9 +4,24 @@ export const SelectedProjectContext = createContext();
 
 const SelectedProjectProvider = ({children}) => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectName, setSelectedProjectName] = useState('');
+  const [selectedProjectCost, setSelectedProjectCost] = useState(0);
+  const [selectedProjectRoi, setSelectedProjectRoi] = useState(0);
+  const [selectedProjectProfit, setSelectedProjectProfit] = useState(0);
 
   return (
-    <SelectedProjectContext.Provider value={{selectedProject, setSelectedProject}}>
+    <SelectedProjectContext.Provider value={{
+      selectedProject,
+      setSelectedProject,
+      selectedProjectName,
+      setSelectedProjectName,
+      selectedProjectCost,
+      setSelectedProjectCost,
+      selectedProjectRoi, 
+      setSelectedProjectRoi,
+      selectedProjectProfit,
+      setSelectedProjectProfit
+      }}>
       {children}
     </SelectedProjectContext.Provider>
   )
