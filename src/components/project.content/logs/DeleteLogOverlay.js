@@ -9,7 +9,7 @@ const DeleteLogOverlay = ({
   deletedLog,
   setDeletedLog
  }) => {
-  const { selectedLog, setSelectedLog } = useContext(SelectedLogContext);
+  const { selectedLog } = useContext(SelectedLogContext);
 
   const deleteLog = (logId) => {
     LogAndRoiServices.deleteLog(logId)
@@ -38,10 +38,10 @@ const DeleteLogOverlay = ({
             className='delete-log-button btn btn-primary'
             type='button'
             onClick={() => {
-              setDeletedLog(!deletedLog);
               deleteLog(selectedLog._id);
               setShowDeleteLogOverlay(!showDeleteLogOverlay);
-              console.log(`The log with this identifier -> ${identifier} has been deleted`);
+              console.log(`The log with this identifier -> ${selectedLog._id} has been deleted`);
+              setDeletedLog(!deletedLog);
             }}
           >
             Delete log

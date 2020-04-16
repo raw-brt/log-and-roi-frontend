@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import LogTimer from "./LogTimer";
 import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
 import dollar from "../../../assets/images/dollar.png";
@@ -7,7 +7,9 @@ import trashIcon from '../../../assets/images/Trash button.svg';
 const Log = ({ 
     identifier, 
     title, 
-    date
+    date,
+    showDeleteLogOverlay,
+    setShowDeleteLogOverlay
   }) => {
 
     const { setSelectedLog } = useContext(SelectedLogContext);
@@ -31,10 +33,9 @@ const Log = ({
           alt='delete'
           className='log-delete-icon mr-1'
           onClick={() => {
-            setSelectedLog(identifier)
-
-            }
-          }
+            setSelectedLog(identifier);
+            setShowDeleteLogOverlay(!showDeleteLogOverlay);
+          }}
         ></img>
       </div>
       <LogTimer className='log-timer'/>

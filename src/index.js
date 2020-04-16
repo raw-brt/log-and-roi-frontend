@@ -6,13 +6,16 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthContextProvider } from './contexts/AuthContext';
 import SelectedProjectProvider from './contexts/SelectedProjectContext';
+import { SelectedLogProvider } from './contexts/SelectedLogContext';
 
 ReactDOM.render((
   <AuthContextProvider>
     <SelectedProjectProvider>
-      <Router>
-        <App />
-      </Router>
+      <SelectedLogProvider>
+        <Router>
+          <App />
+        </Router>
+      </SelectedLogProvider>
     </SelectedProjectProvider>
   </AuthContextProvider>
   ), document.getElementById('root'));
