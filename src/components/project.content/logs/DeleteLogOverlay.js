@@ -38,9 +38,9 @@ const DeleteLogOverlay = ({
             className='delete-log-button btn btn-primary'
             type='button'
             onClick={() => {
-              deleteLog(selectedLog._id);
+              deleteLog(selectedLog);
               setShowDeleteLogOverlay(!showDeleteLogOverlay);
-              console.log(`The log with this identifier -> ${selectedLog._id} has been deleted`);
+              console.log(`The log with this identifier -> ${selectedLog} has been deleted`);
               setDeletedLog(!deletedLog);
             }}
           >
