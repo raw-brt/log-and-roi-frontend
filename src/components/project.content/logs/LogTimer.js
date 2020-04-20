@@ -6,11 +6,12 @@ import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 import resetIcon from '../../../assets/images/reset.svg';
 
-const LogTimer = () => {
+const LogTimer = ({ setLogDuration, stoppedLog, setStoppedLog }) => {
   const [timerValue, setTimerValue] = useState(null);
 
   useEffect(() => {
-    console.log("timerValue: " + timerValue);
+    setLogDuration(timerValue);
+    console.log(timerValue)
   }, [timerValue]);
 
   return (
@@ -38,6 +39,7 @@ const LogTimer = () => {
               () => {
                 const actualTime = getTime();
                 setTimerValue(actualTime);
+                setStoppedLog(!stoppedLog)
                 stop();
               }
               }></img>

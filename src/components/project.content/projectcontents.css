@@ -35,6 +35,11 @@
   color: white;
 }
 
+.card.time {
+  background-color: #007AFF;
+  color: white;
+}
+
 .card-title {
   font-size: 1.5rem;
   font-weight: 700;

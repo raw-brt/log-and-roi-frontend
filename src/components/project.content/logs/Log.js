@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import LogTimer from "./LogTimer";
 import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
+import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
+import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import dollar from "../../../assets/images/dollar.png";
 import trashIcon from '../../../assets/images/Trash button.svg';
 
@@ -12,7 +14,36 @@ const Log = ({
     setShowDeleteLogOverlay
   }) => {
 
-    const { setSelectedLog } = useContext(SelectedLogContext);
+    // Used contexts
+    const { selectedLog, setSelectedLog } = useContext(SelectedLogContext);
+    const { selectedProjectCostPerHour } = useContext(SelectedProjectContext);
+
+    // State variables
+    const [logDuration, setLogDuration] = useState(0);
+    const [stoppedLog, setStoppedLog] = useState(false);
+
+    // Component Helpers
+    const handleCalculateCost = (duration, costPerHour) => {
+      const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour;
+      return logCost.toFixed(2);
+    } 
+
+    const actualLogCost = handleCalculateCost(logDuration, selectedProjectCostPerHour);
+
+    // Lifecycle management
+    useEffect(() => {
+      const logData = {
+        cost: actualLogCost,
+        duration: logDuration
+      }
+
+      console.log(logData)
+      console.log(stoppedLog)
+
+      LogAndRoiServices.updateLog(logData, identifier._id)
+        .then(log => `The log with the id -> ${selectedLog} has been updated`)
+        .catch(error => `Something when wrong -> ${error}`)
+    }, [logDuration, stoppedLog]);
 
   return (
     <div className="log flex-row justify-content-between align-items-center">
@@ -25,7 +56,7 @@ const Log = ({
           className="mr-1"
           style={{ maxWidth: "1.75rem" }}
         />
-          Coste
+          {actualLogCost}
       </div>
       <div className='log-delete'>
         <img
@@ -39,7 +70,7 @@ const Log = ({
           }}
         ></img>
       </div>
-      <LogTimer className='log-timer'/>
+      <LogTimer className='log-timer' setLogDuration={setLogDuration} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog}/>
     </div>
   );
 };

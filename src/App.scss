@@ -93,7 +93,7 @@ li {
   border-radius: 3px;
 }
 
-#sidebar li:hover .delete-icon{
+#sidebar li:hover .delete-icon {
   display: initial;
   cursor: pointer;
 }
@@ -101,6 +101,7 @@ li {
 // Project contents
 .project-contents {
   overflow-y: auto;
+  justify-content: flex-start;
 }
 
 .project-financials {

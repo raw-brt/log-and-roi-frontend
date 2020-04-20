@@ -22,7 +22,7 @@ const LogList = () => {
         setLogs(logs);
       })
       .catch(error => console.log(error))
-  }, [selectedProject, showAddLogOverlay, deletedLog]);
+  }, [selectedProject, showAddLogOverlay, deletedLog, showAddLogOverlay]);
 
   return(
     <div className="log-list flex-column">
@@ -52,10 +52,6 @@ const LogList = () => {
               />
             ))
           )}
-          <Log title="Wireframes" date="01/02/2020"/>
-          <Log title="Mockups" date="02/02/2020"/>
-          <Log title="API design" date="04/02/2020"/>
-          <Log title="Front architecture" date="07/02/2020"/>
         </ul>
       </div>
       <AddLogOverlay
