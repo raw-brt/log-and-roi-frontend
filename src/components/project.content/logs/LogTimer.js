@@ -15,6 +15,7 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
   // Component state
   const [timerValue, setTimerValue] = useState(null);
   const [timerHasStopped, setTimerHasStopped] = useState(false);
+  const [timerHasReset, setTimerHasReset] = useState(false);
 
   // Helper to calculate timer cost
   const calculateCost = (duration, costPerHour) => {
@@ -38,6 +39,18 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
     }
   }
 
+  const handleResetLog = () => {
+    const resetLogData = {
+      cost: 0,
+      duration: 0,
+    }
+
+    LogAndRoiServices.updateLog(resetLogData, identifier._id)
+      .then(log => `The log with the id -> ${log._id} has been reset`)
+      .catch(error => `Something when wrong -> ${error}`)
+  }
+
+
   useEffect(() => {
     setLogDuration(timerValue);
   }, [timerValue]);
@@ -45,6 +58,10 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
   useEffect(() => {
     handleUpdateLog();
   }, [timerHasStopped])
+
+  useEffect(() => {
+    handleResetLog();
+  }, [timerHasReset]);
 
   return (
     <Timer
@@ -76,7 +93,12 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
                 stop();
               }
               }></img>
-            <img src={resetIcon} className="control-btn" alt='reset' role='button' onClick={reset}></img>
+            <img src={resetIcon} className="control-btn" alt='reset' role='button' onClick={
+              () => {
+                setTimerHasReset(!timerHasReset);
+                reset();
+              }
+              }></img>
           </div>
         </>
     )}
