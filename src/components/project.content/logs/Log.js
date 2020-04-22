@@ -10,6 +10,8 @@ const Log = ({
     identifier, 
     title, 
     date,
+    cost,
+    duration,
     showDeleteLogOverlay,
     setShowDeleteLogOverlay
   }) => {
@@ -23,27 +25,37 @@ const Log = ({
     const [stoppedLog, setStoppedLog] = useState(false);
 
     // Component Helpers
-    const handleCalculateCost = (duration, costPerHour) => {
-      const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour;
-      return logCost.toFixed(2);
-    } 
+    // const handleCalculateCost = (duration, costPerHour) => {
+    //   const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour;
+    //   return logCost.toFixed(2);
+    // } 
 
-    const actualLogCost = handleCalculateCost(logDuration, selectedProjectCostPerHour);
+    // const actualLogCost = handleCalculateCost(logDuration, selectedProjectCostPerHour);
 
     // Lifecycle management
-    useEffect(() => {
-      const logData = {
-        cost: actualLogCost,
-        duration: logDuration
-      }
+    // useEffect(() => {
+    //   LogAndRoiServices.getLogDetail(identifier._id)
+    //     .then((log) => {
+    //       setLogDetail(log);
+    //       console.log(logDetail)
+    //     })
+    //     .catch((error) => `Something went wrong. Error -> ${error}`)
+    // }, []);
 
-      console.log(logData)
-      console.log(stoppedLog)
+    // useEffect(() => {
+    //   const logData = {
+    //     cost: actualLogCost,
+    //     duration: logDuration
+    //   }
 
-      LogAndRoiServices.updateLog(logData, identifier._id)
-        .then(log => `The log with the id -> ${selectedLog} has been updated`)
-        .catch(error => `Something when wrong -> ${error}`)
-    }, [logDuration, stoppedLog]);
+    //   console.log(logData)
+    //   console.log(stoppedLog)
+    //   console.log(logDetail)
+
+    //   LogAndRoiServices.updateLog(logData, identifier._id)
+    //     .then(log => `The log with the id -> ${log._id} has been updated`)
+    //     .catch(error => `Something when wrong -> ${error}`)
+    // }, [stoppedLog]);
 
   return (
     <div className="log flex-row justify-content-between align-items-center">
@@ -56,7 +68,7 @@ const Log = ({
           className="mr-1"
           style={{ maxWidth: "1.75rem" }}
         />
-          {actualLogCost}
+          {cost}
       </div>
       <div className='log-delete'>
         <img
@@ -70,7 +82,7 @@ const Log = ({
           }}
         ></img>
       </div>
-      <LogTimer className='log-timer' setLogDuration={setLogDuration} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog}/>
+      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog}/>
     </div>
   );
 };

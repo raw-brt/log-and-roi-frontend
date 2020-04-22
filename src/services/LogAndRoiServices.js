@@ -30,8 +30,9 @@ const deleteProject = (projectId) => http.delete(`/projects/${projectId}`);
 
 //Logs
 const getLogs = (projectId) => http.get(`/${projectId}/logs`);
+const getLogDetail = (logId) => http.get(`/${logId}/detail`);
 const createLog = (data, projectId) => http.post(`/${projectId}/logs/new`, data);
-const updateLog = (data, log) => http.patch(`/logs/${log.id}`, data);
+const updateLog = (data, logId) => http.patch(`/logs/${logId}`, data);
 const deleteLog = (logId) => http.delete(`/logs/${logId}/delete`);
 
 export default {
@@ -43,6 +44,7 @@ export default {
   updateProject,
   deleteProject,
   getLogs,
+  getLogDetail,
   createLog,
   updateLog,
   deleteLog

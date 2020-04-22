@@ -1,23 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Timer from 'react-compound-timer'
+import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
+import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import clock from '../../../assets/images/clock-regular.svg'
 import playIcon from '../../../assets/images/play.svg';
 import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 import resetIcon from '../../../assets/images/reset.svg';
 
-const LogTimer = ({ setLogDuration, stoppedLog, setStoppedLog }) => {
+const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, setStoppedLog }) => {
+  // Context variables import
+  const { selectedProjectCostPerHour } = useContext(SelectedProjectContext);
+
+  // Component state
   const [timerValue, setTimerValue] = useState(null);
+  const [timerHasStopped, setTimerHasStopped] = useState(false);
+
+  // Helper to calculate timer cost
+  const calculateCost = (duration, costPerHour) => {
+    const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour;
+    return logCost.toFixed(2);
+  } 
+
+  // Helper to update log properties in DB
+  const handleUpdateLog = () => {
+
+    if (timerValue > 0) {
+      const timerCost = calculateCost(timerValue, selectedProjectCostPerHour);
+      const logData = {
+        cost: timerCost,
+        duration: timerValue
+      }
+      
+      LogAndRoiServices.updateLog(logData, identifier._id)
+        .then(log => `The log with the id -> ${log._id} has been updated`)
+        .catch(error => `Something when wrong -> ${error}`)
+    }
+  }
 
   useEffect(() => {
     setLogDuration(timerValue);
-    console.log(timerValue)
   }, [timerValue]);
+
+  useEffect(() => {
+    handleUpdateLog();
+  }, [timerHasStopped])
 
   return (
     <Timer
       formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}
-      initialTime={0}
+      initialTime={initialDuration}
       startImmediately={false}
       onStart={() => console.log('onStart')}
       onPause={() => console.log('onPause')}
@@ -39,7 +71,8 @@ const LogTimer = ({ setLogDuration, stoppedLog, setStoppedLog }) => {
               () => {
                 const actualTime = getTime();
                 setTimerValue(actualTime);
-                setStoppedLog(!stoppedLog)
+                setStoppedLog(!stoppedLog);
+                setTimerHasStopped(!timerHasStopped);
                 stop();
               }
               }></img>

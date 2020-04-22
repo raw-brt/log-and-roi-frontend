@@ -41,12 +41,14 @@ const LogList = () => {
       <div className="log-list row">
         <ul className="logs">
           {logs && (
-            logs.map((log, index) => (
+            logs.map((log) => (
               <Log 
                 key={log._id} 
                 identifier={log} 
                 title={log.logName} 
                 date={log.createdAt.slice(0, 10)}
+                cost={log.cost}
+                duration={log.duration}
                 showDeleteLogOverlay={showDeleteLogOverlay}
                 setShowDeleteLogOverlay={setShowDeleteLogOverlay}
               />
