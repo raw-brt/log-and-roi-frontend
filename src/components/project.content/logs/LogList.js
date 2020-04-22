@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import Log from './Log';
 import AddLogOverlay from './AddLogOverlay'
 import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
-// import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import add from '../../../assets/images/Add icon white.svg';
 import DeleteLogOverlay from './DeleteLogOverlay';
 
 const LogList = () => {
   const { selectedProject } = useContext(SelectedProjectContext);
-  // const { selectedLog, setSelectedLog } = useContext(SelectedLogContext);
 
   const [logs, setLogs] = useState([]);
   const [showAddLogOverlay, setShowAddLogOverlay] = useState(false);

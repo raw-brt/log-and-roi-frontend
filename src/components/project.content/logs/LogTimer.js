@@ -8,18 +8,19 @@ import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 import resetIcon from '../../../assets/images/reset.svg';
 
-const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, setStoppedLog }) => {
+const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLog, setStoppedLog }) => {
   // Context variables import
   const { selectedProjectCostPerHour } = useContext(SelectedProjectContext);
 
   // Component state
-  const [timerValue, setTimerValue] = useState(null);
+  const [timerValue, setTimerValue] = useState(initialDuration);
   const [timerHasStopped, setTimerHasStopped] = useState(false);
-  const [timerHasReset, setTimerHasReset] = useState(false);
 
   // Helper to calculate timer cost
   const calculateCost = (duration, costPerHour) => {
-    const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour;
+    console.log(`previous cost is ${cost}`)
+    const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour + cost;
+    console.log(`logCost is ${logCost}`)
     return logCost.toFixed(2);
   } 
 
@@ -52,16 +53,17 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
 
 
   useEffect(() => {
-    setLogDuration(timerValue);
+      setLogDuration(timerValue);
   }, [timerValue]);
 
   useEffect(() => {
-    handleUpdateLog();
-  }, [timerHasStopped])
-
-  useEffect(() => {
-    handleResetLog();
-  }, [timerHasReset]);
+    if (timerHasStopped === true) {
+      handleUpdateLog();
+      console.log(`log updated`)
+    } else {
+      console.log(`Handleupdatelog useeffect has run but the function was not executed`)
+    }
+  });
 
   return (
     <Timer
@@ -73,7 +75,7 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
       onStop={() => console.log('onStop')}
       onReset={() => console.log('onReset')}
 >
-    {({ start, pause, stop, reset, getTime }) => 
+    {({ start, pause, stop, getTime }) => 
       ( 
         <>
           <div className="d-flex align-items-center justify-content-between">
@@ -81,22 +83,23 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
               <img src={clock} alt="clock" className="pr-2" style={{ width: '1.75rem' }}/><Timer.Hours />:<Timer.Minutes />:<Timer.Seconds /> 
             </div>
           </div>
-          <div className="d-flex justify-content-between" style={{ minWidth: '9rem' }}>
-            <img src={playIcon} className="control-btn" alt='play' role='button' onClick={start}></img>
+          <div className="d-flex justify-content-between" style={{ minWidth: '6rem' }}>
+            <img src={playIcon} className="control-btn" alt='play' role='button' onClick={
+              () => {
+                setTimerHasStopped(false);
+                console.log(timerHasStopped)
+                start();
+              }
+              }></img>
             <img src={pauseIcon} className="control-btn" alt='pause' role='button' onClick={pause}></img>
             <img src={stopIcon} className="control-btn" alt='stop' role='button' onClick={
               () => {
                 const actualTime = getTime();
                 setTimerValue(actualTime);
                 setStoppedLog(!stoppedLog);
-                setTimerHasStopped(!timerHasStopped);
+                setTimerHasStopped(true);
+                console.log(timerHasStopped)
                 stop();
-              }
-              }></img>
-            <img src={resetIcon} className="control-btn" alt='reset' role='button' onClick={
-              () => {
-                setTimerHasReset(!timerHasReset);
-                reset();
               }
               }></img>
           </div>

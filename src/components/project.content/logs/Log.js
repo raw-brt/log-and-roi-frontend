@@ -68,7 +68,7 @@ const Log = ({
           className="mr-1"
           style={{ maxWidth: "1.75rem" }}
         />
-          {cost}
+          {`${cost} €`}
       </div>
       <div className='log-delete'>
         <img
@@ -82,7 +82,7 @@ const Log = ({
           }}
         ></img>
       </div>
-      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog}/>
+      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} cost={cost} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog}/>
     </div>
   );
 };
