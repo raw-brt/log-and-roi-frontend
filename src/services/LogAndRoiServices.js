@@ -24,8 +24,9 @@ const register = data => http.post('/users', data);
 
 //Projects
 const getProjects = (user) => http.get(`/user/${user.id}/projects`);
+const getProjectDetail = (projectId) => http.get(`/projects/${projectId}`);
 const createProject = (data, user) => http.post(`/${user.id}/projects/new`, data);
-const updateProject = (data, project) => http.patch(`/projects/${project.id}`, data);
+const updateProject = (data, projectId) => http.patch(`/projects/${projectId}`, data);
 const deleteProject = (projectId) => http.delete(`/projects/${projectId}`);
 
 //Logs
@@ -40,6 +41,7 @@ export default {
   logout,
   register,
   getProjects,
+  getProjectDetail,
   createProject,
   updateProject,
   deleteProject,

@@ -1,15 +1,19 @@
 import React, { useEffect, useContext, useState } from 'react';
 import KpiCard from './KpiCard';
+import editProject from '../../../assets/images/Edit project.svg';
 import { SelectedProjectContext }  from '../../../contexts/SelectedProjectContext';
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
+import EditProjectOverlay from './EditProjectOverlay';
 
 const ProjectFinancials = () => {
-  const { selectedProject, selectedProjectName } = useContext(SelectedProjectContext);
+  const { selectedProject, selectedProjectName, selectedProjectProfit } = useContext(SelectedProjectContext);
   
   const [projectLogs, setProjectLogs] = useState([]);
   const [projectCost, setProjectCost] = useState(0);
   const [projectProfit, setProjectProfit] = useState(0);
   const [projectDuration, setProjectDuration] = useState(0);
+  const [showEditProjectOverlay, setShowEditProjectOverlay] = useState(false);
+  const [projectHasBeenEdited, setProjectHasBeenEdited] = useState(null);
 
   const roi = -100
   const color =  roi > 0 ? '#34C759' : "#FE2360"
@@ -33,17 +37,24 @@ const ProjectFinancials = () => {
         console.log(`Project cost is ${projectCost} and project duration is ${projectDuration}`)
       })
       .catch(error => console.log(error))
-  }, [selectedProject, projectCost, projectDuration, projectProfit]);
+  }, [selectedProject, projectCost, projectDuration, projectProfit, projectHasBeenEdited]);
 
 
   return(
       <div className='project-financials flex-column'>
-        <div className='project-financials-header row'>
+        <div className='project-financials-header row d-flex justify-content-between'>
           <h3>{selectedProjectName}</h3>
+          <img
+            src={editProject}
+            className='edit-project-icon'
+            alt='Edit project icon'
+            role='button'
+            onClick={() => setShowEditProjectOverlay(!showEditProjectOverlay)}
+          />
         </div>
         <div className='project-financial-cards row'>
           <div className="profit-cost-column col-sm">
-            <KpiCard className="card profit" value="10€" title="Profit"/>
+            <KpiCard className="card profit" value={`${selectedProjectProfit} €`} title="Profit"/>
             <KpiCard className="card roi" value={`${actualRoi} %`} title="ROI" style={{ backgroundColor: color}}/>
           </div>
           <div className="roi-column col-sm">
@@ -51,6 +62,11 @@ const ProjectFinancials = () => {
             <KpiCard className="card cost" value={`${actualCost} €`} title="Project cost"/>
           </div>
       </div>
+      <EditProjectOverlay
+        showEditProjectOverlay={showEditProjectOverlay}
+        setShowEditProjectOverlay={setShowEditProjectOverlay}
+        setProjectHasBeenEdited={setProjectHasBeenEdited}
+      />
     </div>
   )
 }

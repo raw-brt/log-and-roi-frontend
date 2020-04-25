@@ -22,12 +22,10 @@ const AddProjectOverlay = ({
         costPerHour: costPerHour
       }
       LogAndRoiServices.createProject(projectData, currentUser)
-        .then(project => {
-          console.log(`The project ${project} was created`);
-        })
-        .then(() => {
+        .then((project) => {
           setProject('');
           setCostPerHour(0);
+          console.log(`The project ${project} was created`);
         })
         .catch(error => console.log(error))
     }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Edit-button">
+            <g id="Group-5">
+                <g id="Reset-icon" fill="#50E3C2">
+                    <g id="Group-4">
+                        <g id="Stop-icon">
+                            <g id="Group-3">
+                                <g id="Pause-icon">
+                                    <g id="Group-2">
+                                        <g id="Pause-icon">
+                                            <g id="Add-icon">
+                                                <circle id="Oval" cx="12" cy="12" r="12"></circle>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="pen-solid" transform="translate(7.000000, 7.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                    <path d="M5.68693957,1.81754386 L8.18245614,4.31306043 L2.76354776,9.73196881 L0.538596491,9.97758285 C0.240740741,10.0105263 -0.0109161793,9.75867446 0.0222222222,9.46081871 L0.269785575,7.23430799 L5.68693957,1.81754386 Z M9.72592593,1.4460039 L8.55419103,0.274269006 C8.18869396,-0.0912280702 7.59590643,-0.0912280702 7.23040936,0.274269006 L6.12807018,1.37660819 L8.62358674,3.87212476 L9.72592593,2.76978558 C10.091423,2.40409357 10.091423,1.81150097 9.72592593,1.4460039 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

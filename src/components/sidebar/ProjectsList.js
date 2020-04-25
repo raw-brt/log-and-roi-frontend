@@ -8,7 +8,12 @@ import DeleteProjectOverlay from "./DeleteProjectOverlay";
 
 const ProjectsList = ({ setProjectHasBeenDeleted }) => {
   const { currentUser } = useContext(AuthContext);
-  const { selectedProject, setSelectedProject, setSelectedProjectName, setSelectedProjectCostPerHour } = useContext(SelectedProjectContext);
+  const { selectedProject, 
+          setSelectedProject, 
+          setSelectedProjectName, 
+          setSelectedProjectCostPerHour,
+          setSelectedProjectProfit 
+        } = useContext(SelectedProjectContext);
 
   const [projects, setProjects] = useState([]);
   const [activeItem, setActiveItem] = useState(selectedProject);
@@ -22,6 +27,7 @@ const ProjectsList = ({ setProjectHasBeenDeleted }) => {
           setActiveItem(projects[0]._id)
           setSelectedProjectName(projects[0].projectName)
           setSelectedProjectCostPerHour(projects[0].costPerHour)
+          setSelectedProjectProfit(projects[0].profit)
         }
         setProjects(projects);
       })
@@ -44,6 +50,7 @@ const ProjectsList = ({ setProjectHasBeenDeleted }) => {
               setSelectedProject(project._id);
               setSelectedProjectName(project.projectName);
               setSelectedProjectCostPerHour(project.costPerHour);
+              setSelectedProjectProfit(project.profit);
               console.log(selectedProject, project.costPerHour)
             }}
           >

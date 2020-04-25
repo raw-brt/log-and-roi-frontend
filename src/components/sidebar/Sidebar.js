@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ProjectsList from "./ProjectsList";
 import "../sidebar/sidebar.css";
-// import AuthContext from '../../contexts/AuthContext';
 import UserInfo from "./UserInfo";
 import AddProjectOverlay from "./AddProjectOverlay";
 import add from "../../../src/assets/images/Add icon.svg";

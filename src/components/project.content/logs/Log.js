@@ -24,39 +24,6 @@ const Log = ({
     const [logDuration, setLogDuration] = useState(0);
     const [stoppedLog, setStoppedLog] = useState(false);
 
-    // Component Helpers
-    // const handleCalculateCost = (duration, costPerHour) => {
-    //   const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour;
-    //   return logCost.toFixed(2);
-    // } 
-
-    // const actualLogCost = handleCalculateCost(logDuration, selectedProjectCostPerHour);
-
-    // Lifecycle management
-    // useEffect(() => {
-    //   LogAndRoiServices.getLogDetail(identifier._id)
-    //     .then((log) => {
-    //       setLogDetail(log);
-    //       console.log(logDetail)
-    //     })
-    //     .catch((error) => `Something went wrong. Error -> ${error}`)
-    // }, []);
-
-    // useEffect(() => {
-    //   const logData = {
-    //     cost: actualLogCost,
-    //     duration: logDuration
-    //   }
-
-    //   console.log(logData)
-    //   console.log(stoppedLog)
-    //   console.log(logDetail)
-
-    //   LogAndRoiServices.updateLog(logData, identifier._id)
-    //     .then(log => `The log with the id -> ${log._id} has been updated`)
-    //     .catch(error => `Something when wrong -> ${error}`)
-    // }, [stoppedLog]);
-
   return (
     <div className="log flex-row justify-content-between align-items-center">
       <p className="log-title">{title}</p>
