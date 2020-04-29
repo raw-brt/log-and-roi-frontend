@@ -56,8 +56,23 @@ const ProjectFinancials = () => {
         </div>
         <div className='project-financial-cards row'>
           <div className="profit-cost-column col-sm">
-            <KpiCard className="card profit" value={`${selectedProjectProfit} €`} title="Profit"/>
-            <KpiCard className="card roi" value={`${actualRoi} %`} title="ROI" style={{ backgroundColor: color}}/>
+            <KpiCard 
+              className="card profit" 
+              value={ 
+                selectedProjectProfit != undefined
+                 ? `${selectedProjectProfit} €`
+                 :  `0 €`
+                } 
+              title="Profit"
+              />
+            <KpiCard 
+              className="card roi" 
+              value={
+                actualRoi == Infinity
+                  ? `0 %`
+                  : `${actualRoi} %`
+              } 
+              title="ROI" style={{ backgroundColor: color}}/>
           </div>
           <div className="roi-column col-sm">
             <KpiCard className="card time" value={`${durationInHours} hours`} title="Time invested"/>

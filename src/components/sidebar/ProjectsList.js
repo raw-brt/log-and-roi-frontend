@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import "../sidebar/sidebar.css";
+import AuthContext from '../../contexts/AuthContext';
 import { SelectedProjectContext } from "../../contexts/SelectedProjectContext";
 import DeleteProjectOverlay from "./DeleteProjectOverlay";
+import LogAndRoiServices from '../../services/LogAndRoiServices';
 
-const ProjectsList = ({ setProjectHasBeenDeleted, projectsList }) => {
+const ProjectsList = ({ projectHasBeenCreated }) => {
+  // Contexts import
+
+  const { currentUser } = useContext(AuthContext);
   const { selectedProject, 
           setSelectedProject, 
           setSelectedProjectName, 
@@ -12,12 +17,39 @@ const ProjectsList = ({ setProjectHasBeenDeleted, projectsList }) => {
           setSelectedProjectProfit 
         } = useContext(SelectedProjectContext);
 
+  // State variables
+
+  const [projectsList, setProjectsList] = useState([]);
   const [activeItem, setActiveItem] = useState(selectedProject);
   const [showDeleteOverlay, setShowDeleteOverlay] = useState(false);
+  const [projectHasBeenDeleted, setProjectHasBeenDeleted] = useState(false);
+
+  // Methods
+
+  const deleteProject = (projectId) => {
+    LogAndRoiServices.deleteProject(projectId)
+      .then(() => console.log(`The project with this ${projectId} has been deleted`))
+      .catch((error) => console.log(`Something went wrong while deleting project -> ${error}`));
+  };
+
+  // Component lifecycle
+
+  useEffect(() => {
+    LogAndRoiServices.getProjects(currentUser)
+      .then((projects) => {
+        setProjectsList(projects);
+        setSelectedProject(projects[0]._id);
+        setSelectedProjectName(projects[0].projectName);
+        setSelectedProjectCostPerHour(projects[0].costPerHour);
+        setSelectedProjectProfit(projects[0].profit);
+        console.log(`SelP, FirstR is -> ${selectedProject}`);
+      })
+  }, [projectHasBeenCreated]);
 
   useEffect(() => {
     setActiveItem(selectedProject);
-  }, [selectedProject]);
+    console.log(`PL updated. AItem is -> ${activeItem} and SP is ${selectedProject}`)
+  }, [selectedProject, activeItem]);
 
   return (
     <>
@@ -49,7 +81,10 @@ const ProjectsList = ({ setProjectHasBeenDeleted, projectsList }) => {
             <span
               className="delete-icon"
               role="button"
-              onClick={() => setShowDeleteOverlay(!showDeleteOverlay)}
+              onClick={() => {
+                setShowDeleteOverlay(!showDeleteOverlay);
+                console.log(`SP is -> ${selectedProject} , Trash icon`)
+              }}
             >
               <FaTrashAlt />
             </span>
@@ -59,7 +94,9 @@ const ProjectsList = ({ setProjectHasBeenDeleted, projectsList }) => {
       <DeleteProjectOverlay
         showDeleteOverlay={showDeleteOverlay}
         setShowDeleteOverlay={setShowDeleteOverlay}
+        projectHasBeenDeleted={projectHasBeenDeleted}
         setProjectHasBeenDeleted={setProjectHasBeenDeleted}
+        deleteProject={deleteProject}
       />
     </>
   );

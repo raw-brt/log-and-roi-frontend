@@ -1,24 +1,9 @@
 import React, { useContext } from "react";
 import { Modal } from "react-bootstrap";
 import { SelectedProjectContext } from "../../contexts/SelectedProjectContext";
-import LogAndRoiServices from "../../services/LogAndRoiServices";
 
-const DeleteProjectOverlay = ({
-  showDeleteOverlay,
-  setShowDeleteOverlay,
-  setProjectHasBeenDeleted,
-}) => {
+const DeleteProjectOverlay = ({ showDeleteOverlay, setShowDeleteOverlay, projectHasBeenDeleted, setProjectHasBeenDeleted, deleteProject }) => {
   const { selectedProject } = useContext(SelectedProjectContext);
-
-  const deleteProject = (projectId) => {
-    LogAndRoiServices.deleteProject(projectId)
-      .then(() =>
-        console.log(`The project with this ${projectId} has been deleted`)
-      )
-      .catch((error) =>
-        console.log(`Something went wrong while deleting project -> ${error}`)
-      );
-  };
 
   return (
     showDeleteOverlay && (
@@ -34,16 +19,16 @@ const DeleteProjectOverlay = ({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Are you sure you want to delete the project?</h4>
+          <h4>`Are you sure you want to delete the project with the id ${selectedProject}?`</h4>
         </Modal.Body>
         <Modal.Footer>
           <button
             className="delete-project-button btn btn-primary"
             type="button"
             onClick={() => {
-              setProjectHasBeenDeleted(selectedProject._id);
-              deleteProject(selectedProject._id);
-              setShowDeleteOverlay(!showDeleteOverlay);
+              deleteProject(selectedProject);
+              setProjectHasBeenDeleted(!projectHasBeenDeleted);
+              setShowDeleteOverlay(!showDeleteOverlay)
             }}
           >
             Delete project
