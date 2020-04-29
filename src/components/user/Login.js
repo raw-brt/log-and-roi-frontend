@@ -3,13 +3,16 @@ import { useForm } from 'react-hook-form';
 import '../user/userStyles.css';
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
+import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import { Redirect } from 'react-router-dom';
 
 const Login = () => {
+  const { setUser } = useContext(AuthContext); 
+  const { setSelectedProject } = useContext(SelectedProjectContext);
+
   const { register, handleSubmit } = useForm();
   const [currentUser, setCurrentUser] = useState(null);
   const [validateUser, setValidateUser] = useState(false)
-  const { setUser } = useContext(AuthContext); 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,6 +30,13 @@ const Login = () => {
         }
       })
       .catch(error => console.log(error))
+
+      LogAndRoiServices.getProjects(currentUser)
+        .then(projects => {
+          console.log(projects)
+          setSelectedProject(projects[0]._id)
+        })
+        .catch(error => console.log(error))
   }
 
   if (validateUser) return <Redirect to="/"/>
@@ -34,13 +44,13 @@ const Login = () => {
   return (
     
     <form className="form-signin" >
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
+      <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label htmlFor="inputEmail" className="sr-only">Email address</label>
       <input className="form-control" onChange={handleChange} type="text" placeholder="Email adress" name="email" ref={register({required: true, min: 6})} />
-      <label for="inputPassword" class="sr-only">Password</label>
+      <label htmlFor="inputPassword" className="sr-only">Password</label>
       <input className="form-control" onChange={handleChange} type="password" placeholder="Password" name="password" ref={register({required: true})} />
       <button className="btn btn-lg btn-primary btn-block" onClick={handleSubmit(onSubmit)} type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+      <p className="mt-5 mb-3 text-muted">© 2017-2019</p>
     </form>
   );
 }

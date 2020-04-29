@@ -1,8 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import LogTimer from "./LogTimer";
 import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
-import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
-import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import dollar from "../../../assets/images/dollar.png";
 import trashIcon from '../../../assets/images/Trash button.svg';
 
@@ -17,8 +15,7 @@ const Log = ({
   }) => {
 
     // Used contexts
-    const { selectedLog, setSelectedLog } = useContext(SelectedLogContext);
-    const { selectedProjectCostPerHour } = useContext(SelectedProjectContext);
+    const { setSelectedLog } = useContext(SelectedLogContext);
 
     // State variables
     const [logDuration, setLogDuration] = useState(0);
@@ -47,9 +44,9 @@ const Log = ({
             setSelectedLog(identifier._id);
             setShowDeleteLogOverlay(!showDeleteLogOverlay);
           }}
-        ></img>
+        />
       </div>
-      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} cost={cost} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog}/>
+      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} cost={cost}stoppedLog={stoppedLog} setStoppedLog={setStoppedLog} />
     </div>
   );
 };

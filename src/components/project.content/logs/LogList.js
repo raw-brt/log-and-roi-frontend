@@ -15,6 +15,7 @@ const LogList = () => {
   const [deletedLog, setDeletedLog] = useState(false);
 
   useEffect(() => {
+    // Meter un condicional para que no haga la petición en el primer render, en que selectedProject es null
     LogAndRoiServices.getLogs(selectedProject)
       .then((logs) => {
         setLogs(logs);

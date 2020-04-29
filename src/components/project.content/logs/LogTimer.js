@@ -6,7 +6,6 @@ import clock from '../../../assets/images/clock-regular.svg'
 import playIcon from '../../../assets/images/play.svg';
 import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
-import resetIcon from '../../../assets/images/reset.svg';
 
 const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLog, setStoppedLog }) => {
   // Context variables import
@@ -18,9 +17,7 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLo
 
   // Helper to calculate timer cost
   const calculateCost = (duration, costPerHour) => {
-    console.log(`previous cost is ${cost}`)
     const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour + cost;
-    console.log(`logCost is ${logCost}`)
     return logCost.toFixed(2);
   } 
 
@@ -39,18 +36,6 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLo
         .catch(error => `Something when wrong -> ${error}`)
     }
   }
-
-  const handleResetLog = () => {
-    const resetLogData = {
-      cost: 0,
-      duration: 0,
-    }
-
-    LogAndRoiServices.updateLog(resetLogData, identifier._id)
-      .then(log => `The log with the id -> ${log._id} has been reset`)
-      .catch(error => `Something when wrong -> ${error}`)
-  }
-
 
   useEffect(() => {
       setLogDuration(timerValue);
@@ -73,7 +58,6 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLo
       onStart={() => console.log('onStart')}
       onPause={() => console.log('onPause')}
       onStop={() => console.log('onStop')}
-      onReset={() => console.log('onReset')}
 >
     {({ start, pause, stop, getTime }) => 
       ( 

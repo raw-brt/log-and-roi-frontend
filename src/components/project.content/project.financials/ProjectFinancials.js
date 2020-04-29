@@ -8,9 +8,7 @@ import EditProjectOverlay from './EditProjectOverlay';
 const ProjectFinancials = () => {
   const { selectedProject, selectedProjectName, selectedProjectProfit } = useContext(SelectedProjectContext);
   
-  const [projectLogs, setProjectLogs] = useState([]);
   const [projectCost, setProjectCost] = useState(0);
-  const [projectProfit, setProjectProfit] = useState(0);
   const [projectDuration, setProjectDuration] = useState(0);
   const [showEditProjectOverlay, setShowEditProjectOverlay] = useState(false);
   const [projectHasBeenEdited, setProjectHasBeenEdited] = useState(null);
@@ -29,16 +27,20 @@ const ProjectFinancials = () => {
   useEffect(() => {
     LogAndRoiServices.getLogs(selectedProject)
       .then((logs) => {
-        setProjectLogs(logs);
-        const costArray = logs.map(element => element.cost);
-        const durationArray = logs.map(element => element.duration);
-        setProjectCost(costArray.reduce((total, element) => total + element));
-        setProjectDuration(durationArray.reduce((total, element) => total + element));
-        console.log(`Project cost is ${projectCost} and project duration is ${projectDuration}`)
+        if (selectedProject === null) {
+          console.log('First render in financials')
+        } else if (logs.length > 1) {
+          const costArray = logs.map(element => element.cost);
+          const durationArray = logs.map(element => element.duration);
+          setProjectCost(costArray.reduce((total, element) => total + element));
+          setProjectDuration(durationArray.reduce((total, element) => total + element));
+          console.log(`Project cost is ${projectCost} and project duration is ${projectDuration}`)
+        } else {
+          console.log('There are no logs yet for this project');
+        }
       })
       .catch(error => console.log(error))
-  }, [selectedProject, projectCost, projectDuration, projectProfit, projectHasBeenEdited]);
-
+  }, [selectedProject, projectCost, projectDuration, projectHasBeenEdited]);
 
   return(
       <div className='project-financials flex-column'>

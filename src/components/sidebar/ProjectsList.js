@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useContext, Fragment } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import "../sidebar/sidebar.css";
-import LogAndRoiServices from "../../services/LogAndRoiServices";
-import AuthContext from "../../contexts/AuthContext";
 import { SelectedProjectContext } from "../../contexts/SelectedProjectContext";
 import DeleteProjectOverlay from "./DeleteProjectOverlay";
 
-const ProjectsList = ({ setProjectHasBeenDeleted }) => {
-  const { currentUser } = useContext(AuthContext);
+const ProjectsList = ({ setProjectHasBeenDeleted, projectsList }) => {
   const { selectedProject, 
           setSelectedProject, 
           setSelectedProjectName, 
@@ -15,30 +12,17 @@ const ProjectsList = ({ setProjectHasBeenDeleted }) => {
           setSelectedProjectProfit 
         } = useContext(SelectedProjectContext);
 
-  const [projects, setProjects] = useState([]);
   const [activeItem, setActiveItem] = useState(selectedProject);
   const [showDeleteOverlay, setShowDeleteOverlay] = useState(false);
 
   useEffect(() => {
-    LogAndRoiServices.getProjects(currentUser)
-      .then((projects) => {
-        if (selectedProject === null || selectedProject === undefined) {
-          setSelectedProject(projects[0]._id)
-          setActiveItem(projects[0]._id)
-          setSelectedProjectName(projects[0].projectName)
-          setSelectedProjectCostPerHour(projects[0].costPerHour)
-          setSelectedProjectProfit(projects[0].profit)
-        }
-        setProjects(projects);
-      })
-      .catch((error) => console.log(error));
-    console.log(`Selected -> ${selectedProject} ; Active -> ${activeItem}`);
-  }, [showDeleteOverlay]);
+    setActiveItem(selectedProject);
+  }, [selectedProject]);
 
   return (
     <>
       <ul className="project-list col">
-        {projects.map((project) => (
+        {projectsList.map((project) => (
           <li
             key={project._id}
             className={

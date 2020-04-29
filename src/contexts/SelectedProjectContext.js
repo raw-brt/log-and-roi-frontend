@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react';
 export const SelectedProjectContext = createContext();
 
 const SelectedProjectProvider = ({children}) => {
+
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedProjectName, setSelectedProjectName] = useState('');
   const [selectedProjectCostPerHour, setSelectedProjectCostPerHour] = useState(0);
