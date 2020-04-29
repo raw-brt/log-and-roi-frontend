@@ -2,8 +2,15 @@ import React, { useContext } from "react";
 import { Modal } from "react-bootstrap";
 import { SelectedProjectContext } from "../../contexts/SelectedProjectContext";
 
-const DeleteProjectOverlay = ({ showDeleteOverlay, setShowDeleteOverlay, projectHasBeenDeleted, setProjectHasBeenDeleted, deleteProject }) => {
-  const { selectedProject } = useContext(SelectedProjectContext);
+const DeleteProjectOverlay = ({ 
+  showDeleteOverlay, 
+  setShowDeleteOverlay, 
+  projectHasBeenDeleted, 
+  setProjectHasBeenDeleted, 
+  deleteProject
+    }) => {
+  
+      const { selectedProject } = useContext(SelectedProjectContext);
 
   return (
     showDeleteOverlay && (
@@ -27,8 +34,6 @@ const DeleteProjectOverlay = ({ showDeleteOverlay, setShowDeleteOverlay, project
             type="button"
             onClick={() => {
               deleteProject(selectedProject);
-              setProjectHasBeenDeleted(!projectHasBeenDeleted);
-              setShowDeleteOverlay(!showDeleteOverlay)
             }}
           >
             Delete project

@@ -42,14 +42,26 @@ const ProjectsList = ({ projectHasBeenCreated }) => {
         setSelectedProjectName(projects[0].projectName);
         setSelectedProjectCostPerHour(projects[0].costPerHour);
         setSelectedProjectProfit(projects[0].profit);
-        console.log(`SelP, FirstR is -> ${selectedProject}`);
+        console.log(`PL first render`)
       })
-  }, [projectHasBeenCreated]);
+  }, []);
 
-  useEffect(() => {
-    setActiveItem(selectedProject);
-    console.log(`PL updated. AItem is -> ${activeItem} and SP is ${selectedProject}`)
-  }, [selectedProject, activeItem]);
+  // useEffect(() => {
+  //   LogAndRoiServices.getProjects(currentUser)
+  //     .then((projects) => {
+  //       setProjectsList(projects);
+  //       setSelectedProject(projects[0]._id);
+  //       setSelectedProjectName(projects[0].projectName);
+  //       setSelectedProjectCostPerHour(projects[0].costPerHour);
+  //       setSelectedProjectProfit(projects[0].profit);
+  //       console.log(`PL render when project created`)
+  //     })
+  // }, [projectHasBeenCreated]);
+
+  // useEffect(() => {
+  //   setActiveItem(selectedProject);
+  //   console.log(`PL updated. AItem is -> ${activeItem} and SP is ${selectedProject}`)
+  // }, [selectedProject, activeItem]);
 
   return (
     <>
@@ -67,7 +79,6 @@ const ProjectsList = ({ projectHasBeenCreated }) => {
               setSelectedProjectName(project.projectName);
               setSelectedProjectCostPerHour(project.costPerHour);
               setSelectedProjectProfit(project.profit);
-              console.log(selectedProject, project.costPerHour)
             }}
           >
             <div className="selector-plus-name">
@@ -83,21 +94,20 @@ const ProjectsList = ({ projectHasBeenCreated }) => {
               role="button"
               onClick={() => {
                 setShowDeleteOverlay(!showDeleteOverlay);
-                console.log(`SP is -> ${selectedProject} , Trash icon`)
               }}
             >
               <FaTrashAlt />
             </span>
+            <DeleteProjectOverlay
+              showDeleteOverlay={showDeleteOverlay}
+              setShowDeleteOverlay={setShowDeleteOverlay}
+              projectHasBeenDeleted={projectHasBeenDeleted}
+              setProjectHasBeenDeleted={setProjectHasBeenDeleted}
+              deleteProject={deleteProject}
+            />
           </li>
         ))}
       </ul>
-      <DeleteProjectOverlay
-        showDeleteOverlay={showDeleteOverlay}
-        setShowDeleteOverlay={setShowDeleteOverlay}
-        projectHasBeenDeleted={projectHasBeenDeleted}
-        setProjectHasBeenDeleted={setProjectHasBeenDeleted}
-        deleteProject={deleteProject}
-      />
     </>
   );
 };

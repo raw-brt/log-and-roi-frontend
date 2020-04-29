@@ -28,6 +28,7 @@ const Sidebar = () => {
         <AddProjectOverlay
           showAddOverlay={showAddOverlay}
           setShowAddOverlay={setShowAddOverlay}
+          projectHasBeenCreated={projectHasBeenCreated}
           setProjectHasBeenCreated={setProjectHasBeenCreated}
         />
         <ProjectsList

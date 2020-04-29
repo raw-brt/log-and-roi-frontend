@@ -6,7 +6,8 @@ import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 
 const AddProjectOverlay = ({ 
   showAddOverlay, 
-  setShowAddOverlay, 
+  setShowAddOverlay,
+  projectHasBeenCreated, 
   setProjectHasBeenCreated 
   }) => {
     const { currentUser } = useContext(AuthContext);
@@ -69,7 +70,7 @@ const AddProjectOverlay = ({
             onClick={() => {
               createProject();
               setShowAddOverlay(!showAddOverlay);
-              setProjectHasBeenCreated(project);
+              setProjectHasBeenCreated(!projectHasBeenCreated);
               setSelectedProject(project._id);
               }}
             >
