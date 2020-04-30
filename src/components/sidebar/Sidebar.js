@@ -33,6 +33,7 @@ const Sidebar = () => {
         />
         <ProjectsList
           projectHasBeenCreated={projectHasBeenCreated}
+          showAddOverlay={showAddOverlay}
         />
         <UserInfo />
       </nav>

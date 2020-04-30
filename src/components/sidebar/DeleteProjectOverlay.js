@@ -1,16 +1,24 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Modal } from "react-bootstrap";
 import { SelectedProjectContext } from "../../contexts/SelectedProjectContext";
 
 const DeleteProjectOverlay = ({ 
   showDeleteOverlay, 
   setShowDeleteOverlay, 
-  projectHasBeenDeleted, 
-  setProjectHasBeenDeleted, 
-  deleteProject
+  deleteProject,
+  projectHasBeenDeleted,
+  setProjectHasBeenDeleted
     }) => {
   
       const { selectedProject } = useContext(SelectedProjectContext);
+      const [isProjectDeleted, setIsProjectDeleted] = useState(false);
+
+      useEffect(() => {
+        if (isProjectDeleted === true) {
+          setShowDeleteOverlay(!showDeleteOverlay)
+          setProjectHasBeenDeleted(!projectHasBeenDeleted)
+        };
+      }, [isProjectDeleted])
 
   return (
     showDeleteOverlay && (
@@ -26,25 +34,38 @@ const DeleteProjectOverlay = ({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>`Are you sure you want to delete the project with the id ${selectedProject}?`</h4>
+          <h5>`Are you sure you want to delete the project with the id ${selectedProject}?`</h5>
         </Modal.Body>
         <Modal.Footer>
-          <button
-            className="delete-project-button btn btn-primary"
-            type="button"
-            onClick={() => {
-              deleteProject(selectedProject);
-            }}
-          >
-            Delete project
-          </button>
-          <button
-            className="delete-project-cancel btn btn-secondary"
-            type="button"
-            onClick={() => setShowDeleteOverlay(!showDeleteOverlay)}
-          >
-            Cancel
-          </button>
+          {
+            isProjectDeleted === false 
+              ? 
+                <>
+                  <button
+                    className="delete-project-button btn btn-primary"
+                    type="button"
+                    onClick={() => {
+                      deleteProject(selectedProject)
+                      setIsProjectDeleted(!isProjectDeleted)
+                    }}
+                    >
+                      Delete project
+                    </button>
+                    <button
+                      className="delete-project-cancel btn btn-secondary"
+                      type="button"
+                      onClick={() => setShowDeleteOverlay(!showDeleteOverlay)}
+                      >
+                        Cancel
+                  </button>
+                  </>
+              :
+                <>
+                  <button>Go home
+                    
+                  </button>
+                </>
+          }
         </Modal.Footer>
       </Modal>
     )

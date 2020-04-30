@@ -6,7 +6,7 @@ import { SelectedProjectContext } from "../../contexts/SelectedProjectContext";
 import DeleteProjectOverlay from "./DeleteProjectOverlay";
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 
-const ProjectsList = ({ projectHasBeenCreated }) => {
+const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
   // Contexts import
 
   const { currentUser } = useContext(AuthContext);
@@ -44,24 +44,12 @@ const ProjectsList = ({ projectHasBeenCreated }) => {
         setSelectedProjectProfit(projects[0].profit);
         console.log(`PL first render`)
       })
-  }, []);
+  }, [projectHasBeenCreated, showAddOverlay, projectHasBeenDeleted]);
 
-  // useEffect(() => {
-  //   LogAndRoiServices.getProjects(currentUser)
-  //     .then((projects) => {
-  //       setProjectsList(projects);
-  //       setSelectedProject(projects[0]._id);
-  //       setSelectedProjectName(projects[0].projectName);
-  //       setSelectedProjectCostPerHour(projects[0].costPerHour);
-  //       setSelectedProjectProfit(projects[0].profit);
-  //       console.log(`PL render when project created`)
-  //     })
-  // }, [projectHasBeenCreated]);
-
-  // useEffect(() => {
-  //   setActiveItem(selectedProject);
-  //   console.log(`PL updated. AItem is -> ${activeItem} and SP is ${selectedProject}`)
-  // }, [selectedProject, activeItem]);
+  useEffect(() => {
+    setActiveItem(selectedProject);
+    console.log(`PL updated. AItem is -> ${activeItem} and SP is ${selectedProject}`)
+  }, [selectedProject, activeItem]);
 
   return (
     <>
@@ -101,9 +89,9 @@ const ProjectsList = ({ projectHasBeenCreated }) => {
             <DeleteProjectOverlay
               showDeleteOverlay={showDeleteOverlay}
               setShowDeleteOverlay={setShowDeleteOverlay}
+              deleteProject={deleteProject}
               projectHasBeenDeleted={projectHasBeenDeleted}
               setProjectHasBeenDeleted={setProjectHasBeenDeleted}
-              deleteProject={deleteProject}
             />
           </li>
         ))}
