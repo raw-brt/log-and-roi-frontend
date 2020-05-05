@@ -42,7 +42,6 @@ const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
         setSelectedProjectName(projects[0].projectName);
         setSelectedProjectCostPerHour(projects[0].costPerHour);
         setSelectedProjectProfit(projects[0].profit);
-        console.log(`PL first render`)
       })
   }, [projectHasBeenCreated, showAddOverlay, projectHasBeenDeleted]);
 

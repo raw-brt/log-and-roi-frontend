@@ -40,7 +40,6 @@ const Log = ({
           alt='delete'
           className='log-delete-icon mr-1'
           onClick={() => {
-            console.log(identifier._id)
             setSelectedLog(identifier._id);
             setShowDeleteLogOverlay(!showDeleteLogOverlay);
           }}

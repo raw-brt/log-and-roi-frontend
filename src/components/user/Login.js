@@ -39,7 +39,7 @@ const Login = () => {
         .catch(error => console.log(error))
   }
 
-  if (validateUser) return <Redirect to="/"/>
+  if (validateUser) return <Redirect to='/' />
 
   return (
     

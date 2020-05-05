@@ -47,6 +47,11 @@ $medium-grey: #6D7276;
   cursor: pointer;
 }
 
+.user-info img {
+  cursor: pointer;
+  margin: 0px 10px 0px 10px 0px;
+}
+
 // Projects list
 .project-active {
   color: $fluor-green;
