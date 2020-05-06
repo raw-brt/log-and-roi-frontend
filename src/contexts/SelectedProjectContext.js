@@ -10,6 +10,7 @@ const SelectedProjectProvider = ({children}) => {
   const [selectedProjectCost, setSelectedProjectCost] = useState(0);
   const [selectedProjectRoi, setSelectedProjectRoi] = useState(0);
   const [selectedProjectProfit, setSelectedProjectProfit] = useState(0);
+  const [areThereProjects, setAreThereProjects] = useState(false);
 
   return (
     <SelectedProjectContext.Provider value={{
@@ -24,7 +25,9 @@ const SelectedProjectProvider = ({children}) => {
       selectedProjectRoi, 
       setSelectedProjectRoi,
       selectedProjectProfit,
-      setSelectedProjectProfit
+      setSelectedProjectProfit,
+      areThereProjects,
+      setAreThereProjects
       }}>
       {children}
     </SelectedProjectContext.Provider>

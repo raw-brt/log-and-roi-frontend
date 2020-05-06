@@ -14,7 +14,8 @@ const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
           setSelectedProject, 
           setSelectedProjectName, 
           setSelectedProjectCostPerHour,
-          setSelectedProjectProfit 
+          setSelectedProjectProfit,
+          setAreThereProjects 
         } = useContext(SelectedProjectContext);
 
   // State variables
@@ -37,11 +38,17 @@ const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
   useEffect(() => {
     LogAndRoiServices.getProjects(currentUser)
       .then((projects) => {
-        setProjectsList(projects);
-        setSelectedProject(projects[0]._id);
-        setSelectedProjectName(projects[0].projectName);
-        setSelectedProjectCostPerHour(projects[0].costPerHour);
-        setSelectedProjectProfit(projects[0].profit);
+        if (projects.length == 0) {
+          console.log('You have no projects yet')
+        } else {
+          console.log(projects)
+          setProjectsList(projects);
+          setSelectedProject(projects[0]._id);
+          setSelectedProjectName(projects[0].projectName);
+          setSelectedProjectCostPerHour(projects[0].costPerHour);
+          setSelectedProjectProfit(projects[0].profit);
+          setAreThereProjects(true);
+        }
       })
   }, [projectHasBeenCreated, showAddOverlay, projectHasBeenDeleted]);
 
@@ -51,6 +58,7 @@ const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
   }, [selectedProject, activeItem]);
 
   return (
+    projectsList.length > 0 ? (
     <>
       <ul className="project-list col">
         {projectsList.map((project) => (
@@ -96,6 +104,12 @@ const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
         ))}
       </ul>
     </>
+    )
+    : (<>
+        <ul className='project-list col'>
+          <li className='project-active'>Click '+' to create a new project</li>
+        </ul>
+      </>)
   );
 };
 
