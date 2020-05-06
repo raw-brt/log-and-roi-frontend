@@ -5,6 +5,7 @@ import LogAndRoiServices from '../../services/LogAndRoiServices';
 import AuthContext from '../../contexts/AuthContext';
 import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import { Redirect } from 'react-router-dom';
+import logo from '../../assets/images/logo_vertical.svg';
 
 const Login = () => {
   const { setUser } = useContext(AuthContext); 
@@ -43,15 +44,21 @@ const Login = () => {
 
   return (
     
-    <form className="form-signin" >
-      <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label htmlFor="inputEmail" className="sr-only">Email address</label>
-      <input className="form-control" onChange={handleChange} type="text" placeholder="Email adress" name="email" ref={register({required: true, min: 6})} />
-      <label htmlFor="inputPassword" className="sr-only">Password</label>
-      <input className="form-control" onChange={handleChange} type="password" placeholder="Password" name="password" ref={register({required: true})} />
-      <button className="btn btn-lg btn-primary btn-block" onClick={handleSubmit(onSubmit)} type="submit">Sign in</button>
-      <p className="mt-5 mb-3 text-muted">© 2017-2019</p>
-    </form>
+    <div className='login-form d-flex justify-content-center align-items-center m-auto text-center'>
+      <form className="form-signin col-5" >
+        <img src={logo} alt='Log and ROI logo' className='mb-4'/>
+        <h1 className="h3 mb-3 font-weight-normal text-center">Login</h1>
+        <label htmlFor="inputEmail" className="sr-only">Email address</label>
+        <input className="form-control" onChange={handleChange} type="email" placeholder="Email adress" name="email" ref={register({required: true, min: 6})} />
+        <label htmlFor="inputPassword" className="sr-only" type='password'>Password</label>
+        <input className="form-control" onChange={handleChange} type="password" placeholder="Password" name="password" ref={register({required: true})} />
+        <div className='login-buttons d-flex row mt-4 justify-content-center'>
+          <button className='login-back-button mr-2'>Go back</button>
+          <button className="login-button ml-2" onClick={handleSubmit(onSubmit)} type="submit">Sign in</button>
+        </div>
+        <p className="mt-5 mb-3 text-muted">© 2017-2019</p>
+      </form>
+    </div>
   );
 }
 

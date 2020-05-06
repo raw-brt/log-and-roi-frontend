@@ -33,6 +33,64 @@ $generic-border: 1px solid #f1f1f1;
 $fluor-green: #50E3C2;
 $medium-grey: #6D7276;
 
+// Login
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f9;
+  width: 100vw;
+  height: 100vh;
+}
+
+.form-signin {
+  max-width: 800px;
+}
+
+.login-button {
+	background-color: transparent;
+	border-radius: 50px;
+	border: 2px solid #50E3C2;
+	display: inline-block;
+	cursor: pointer;
+	color: #221E1F;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+	padding: 0.5rem 2rem;
+	text-decoration: none;
+}
+.login-button:hover {
+	background-color: #50E3C2;
+	color: #fff;
+}
+.login-button:active {
+	position:relative;
+	top:1px;
+}
+
+.login-back-button {
+	background-color: transparent;
+	border-radius: 50px;
+	border: 2px solid #50E3C2;
+	display: inline-block;
+	cursor: pointer;
+	color: #221E1F;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1rem;
+	font-weight: bold;
+	padding: 0.5rem 2rem;
+	text-decoration: none;
+}
+.login-back-button:hover {
+	background-color: #50E3C2;
+	color: #fff;
+}
+.login-back-button:active {
+	position:relative;
+	top:1px;
+}
+
 // Sidebar
 .sidebar-wrapper {
   display: flex;
@@ -119,6 +177,10 @@ li {
 
 .edit-project-icon {
   cursor: pointer;
+}
+
+.no-projects-message {
+  margin: auto 22%;
 }
 
 // Log list
