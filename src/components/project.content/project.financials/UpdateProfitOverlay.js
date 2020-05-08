@@ -29,6 +29,7 @@ const UpdateProfitOverlay = ({
         size='lg'
         centered
         show={showUpdateProfitOverlay}
+        onHide={() => setShowUpdateProfitOverlay(!showUpdateProfitOverlay)}
       >
         <Modal.Header>
           <Modal.Title id='contained-modal-title-vcenter'>

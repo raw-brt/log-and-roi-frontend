@@ -9,7 +9,7 @@ const ProjectContents = () => {
   return (
     areThereProjects 
     ? (
-      <div className='project-contents col-sm-7 d-flex flex-column m-auto'>
+      <div className='project-contents col-sm-7 d-flex flex-column mx-auto'>
         <ProjectFinancials />
         <LogList />
       </div>

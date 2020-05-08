@@ -22,6 +22,7 @@ const login = ({ email, password }) => http.post('/login', { email, password });
 const logout = () => http.post('/logout');
 const register = data => http.post('/users', data);
 const deleteUser = (userId) => http.delete(`/users/${userId}`)
+const validateUser = (validateToken) => http.get(`/users/${validateToken}/validate`);
 
 //Projects
 const getProjects = (user) => http.get(`/user/${user.id}/projects`);
@@ -42,6 +43,7 @@ export default {
   logout,
   register,
   deleteUser,
+  validateUser,
   getProjects,
   getProjectDetail,
   createProject,

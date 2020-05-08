@@ -26,6 +26,7 @@ const AddLogOverlay = ({ showAddLogOverlay, setShowAddLogOverlay }) => {
         size='lg'
         centered
         show={showAddLogOverlay}
+        onHide={() => setShowAddLogOverlay(!showAddLogOverlay)}
       >
         <Modal.Header>
           <Modal.Title id='contained-modal-title-vcenter'>

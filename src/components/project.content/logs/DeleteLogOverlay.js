@@ -24,6 +24,7 @@ const DeleteLogOverlay = ({
         size='lg'
         centered
         show={showDeleteLogOverlay}
+        onHide={() => setShowDeleteLogOverlay(!showDeleteLogOverlay)}
       >
         <Modal.Header>
           <Modal.Title id='contained-modal-title-vcenter'>

@@ -27,6 +27,7 @@ const DeleteProjectOverlay = ({
         size="lg"
         centered
         show={showDeleteOverlay}
+        onHide={() => setShowDeleteOverlay(!showDeleteOverlay)}
       >
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">

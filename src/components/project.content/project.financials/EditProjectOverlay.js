@@ -38,6 +38,7 @@ const EditProjectOverlay = ({
         size='lg'
         centered
         show={showEditProjectOverlay}
+        onHide={() => setShowEditProjectOverlay(!showEditProjectOverlay)}
       >
         <Modal.Header>
           <Modal.Title id='contained-modal-title-vcenter'>

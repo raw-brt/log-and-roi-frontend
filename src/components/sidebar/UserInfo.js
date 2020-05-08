@@ -33,8 +33,8 @@ const UserInfo = () => {
   return (
     <div className="user-info d-flex row justify-content-between">
       <div className="user-data col">
-        <h5 className="username">{currentUser.username}</h5>
-        <p className="user-mail">{currentUser.email}</p>
+        <h5 className="username">{currentUser.email}</h5>
+        {/* <p className="user-mail">{currentUser.email}</p> */}
       </div>
       <div className="user-settings btn-group col d-flex justify-content-around align-top">
         <img 

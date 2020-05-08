@@ -39,6 +39,7 @@ const AddProjectOverlay = ({
           size='lg'
           centered
           show={showAddOverlay}
+          onHide={() => setShowAddOverlay(!showAddOverlay)}
         >
           <Modal.Header>
             <Modal.Title id='contained-modal-title-vcenter'>
