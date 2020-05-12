@@ -9,6 +9,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const recaptchaRef = React.createRef();
+const CAPTCHA_KEY = '6LcAKvYUAAAAACUo7NxouxtUzjwxoFRxKN4Dc0bI';
 
 
 const Signup = () => {
@@ -40,7 +41,7 @@ const Signup = () => {
         <ReCAPTCHA 
           ref={recaptchaRef}
           size='invisible'
-          siteKey='6LcAKvYUAAAAACUo7NxouxtUzjwxoFRxKN4Dc0bI'
+          sitekey={CAPTCHA_KEY}
         />
 
         {/* Logo and title*/}
