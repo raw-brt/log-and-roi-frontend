@@ -42,19 +42,25 @@ const Login = () => {
   if (validateUser) return <Redirect to='/' />
 
   return (
-    currentUser.validated == false
-      ? 
-        alert('Your user account is not validated yet. Check your email inbox to confirm your email address.')
+    // currentUser === null || currentUser.validated === false
+    //   ? 
+    //     alert('Your user account is not validated yet. Check your email inbox to confirm your email address.')
 
-      : 
+    //   : 
         <div className='login-form d-flex justify-content-center align-items-center m-auto text-center'>
           <form className="form-signin col-8" >
+
+            {/* Logo and title */}
             <img src={logo} alt='Log and ROI logo' className='mb-4'/>
             <h1 className="h3 mb-3 font-weight-normal text-center">Login</h1>
+
+            {/* Inputs */}
             <label htmlFor="inputEmail" className="sr-only">Email address</label>
             <input className="form-control" onChange={handleChange} type="email" placeholder="Email adress" name="email" ref={register({required: true, min: 6})} />
             <label htmlFor="inputPassword" className="sr-only" type='password'>Password</label>
             <input className="form-control" onChange={handleChange} type="password" placeholder="Password" name="password" ref={register({required: true})} />
+
+            {/* Buttons */}
             <div className='login-buttons d-flex row mt-4 justify-content-center'>
               <button className='login-back-button mr-2'>Go back</button>
               <button className="login-button ml-2" onClick={handleSubmit(onSubmit)} type="submit">Sign in</button>
