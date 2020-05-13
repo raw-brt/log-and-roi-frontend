@@ -47,16 +47,18 @@ const AddProjectOverlay = ({
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+          <p className='mb-1'>Project name</p>
           <input 
-            className='add-project-input'
+            className='add-project-input mb-3'
             label='Add a name to your project'
             placeholder='Name'
             type='text'
             value={project}
             onChange={event => setProject(event.target.value)}
           />
+          <p className='mb-1'>Cost per hour (€)</p>
           <input 
-            className='add-cost-input'
+            className='add-cost-input mb-3'
             label='Add a cost-per-hour rate for your project'
             placeholder='Cost per hour'
             type='text'

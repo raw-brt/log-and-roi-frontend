@@ -46,24 +46,27 @@ const EditProjectOverlay = ({
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <p className='mb-1'>Edit project name</p>
           <input
-            className='edit-project-input'
+            className='edit-project-input mb-3'
             label='Project name'
             placeholder='Project name'
             type='text'
             value={projectName}
             onChange={event => setProjectName(event.target.value)}
           />
+          <p className='mb-1'>Edit cost per hour (€)</p>
           <input
-            className='edit-cost-input'
+            className='edit-cost-input mb-3'
             label='Project cost per hour'
             placeholder='Cost per hour'
             type='text'
             value={projectCost}
             onChange={event => setProjectCost(event.target.value)}
           />
+          <p className='mb-1'>Edit profit (€)</p>
           <input
-            className='edit-profit-input'
+            className='edit-profit-input mb-3'
             label='Project profit'
             placeholder='Profit / Projected profit'
             type='text'

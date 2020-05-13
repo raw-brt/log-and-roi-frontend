@@ -92,6 +92,12 @@ $medium-grey: #6D7276;
 	top:1px;
 }
 
+// Signup
+
+.email-registered-error {
+  color: red;
+}
+
 // Sidebar
 .sidebar-wrapper {
   display: flex;
@@ -104,6 +110,10 @@ $medium-grey: #6D7276;
 
 .add-project-btn {
   cursor: pointer;
+}
+
+.user-info {
+  margin-bottom: 1rem;
 }
 
 .user-info img {
@@ -164,8 +174,9 @@ li {
 
 // Project contents
 .project-contents {
-  overflow-y: auto;
+  overflow: auto;
   justify-content: flex-start;
+  height: 100vh;
 }
 
 .project-financials {
@@ -225,6 +236,11 @@ li {
 
 .control-btn {
   cursor: pointer;
+}
+
+.log-delete {
+  flex-basis: 1rem;
+  margin-right: 0.6rem;
 }
 
 .log-delete-icon {

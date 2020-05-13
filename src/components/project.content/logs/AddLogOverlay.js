@@ -34,18 +34,15 @@ const AddLogOverlay = ({ showAddLogOverlay, setShowAddLogOverlay }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <label>
-            Add a name to your log
-            <br/>
+        <p className='mb-1'>Add a name to your log</p>
             <input 
-              className='add-log-input'
+              className='add-log-input mb-3'
               label='Add a name to your log'
               placeholder='I.E. Mockups'
               type='text'
               value={log}
               onChange={event => setLog(event.target.value)}
             />
-          </label>
         </Modal.Body>
         <Modal.Footer>
           <button

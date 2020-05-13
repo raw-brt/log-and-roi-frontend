@@ -15,7 +15,7 @@ const ProjectContents = () => {
       </div>
     )
     : (
-      <div className='project-contents no-projects-message col-sm-7 flex-column'>
+      <div className='project-contents no-projects-message col-sm-7 flex-column d-flex justify-content-center'>
         <h4>You have no projects yet. Click '+' to add a new one!</h4>
       </div>
     )

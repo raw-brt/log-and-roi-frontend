@@ -13,7 +13,7 @@ const Login = () => {
 
   const { register, handleSubmit } = useForm();
   const [currentUser, setCurrentUser] = useState(null);
-  const [validateUser, setValidateUser] = useState(false)
+  const [validatedUser, setValidatedUser] = useState(false)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,6 +25,7 @@ const Login = () => {
       .then(user => {
         if (user) {
           setUser(user)
+          setValidatedUser(true)
         } else {
           console.log('User not found')
         }
@@ -39,7 +40,7 @@ const Login = () => {
         .catch(error => console.log(error))
   }
 
-  if (validateUser) return <Redirect to='/' />
+  if (validatedUser) return <Redirect to='/' />
 
   return (
     // currentUser === null || currentUser.validated === false

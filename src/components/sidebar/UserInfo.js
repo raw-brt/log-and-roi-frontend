@@ -43,7 +43,7 @@ const UserInfo = () => {
           role='button'
           onClick={() => {
             handleLogout()
-          }
+            }
           }
         />
         <img 
@@ -52,7 +52,7 @@ const UserInfo = () => {
           alt='User settings'
           role='button'
           onClick={() => {
-            if (window.confirm('Are you sure you want to delete your user account?.This can not be undone')) {
+            if (window.confirm(`Are you sure you want to delete your user account?.This can not be undone ${currentUser._id}`) === true) {
               handleDeleteUser(currentUser._id)
               }
             }
