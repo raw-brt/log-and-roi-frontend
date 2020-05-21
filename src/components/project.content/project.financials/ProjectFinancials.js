@@ -6,21 +6,19 @@ import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import EditProjectOverlay from './EditProjectOverlay';
 
 const ProjectFinancials = () => {
-  const { selectedProject, selectedProjectName, selectedProjectProfit } = useContext(SelectedProjectContext);
+  const { selectedProject, selectedProjectName, selectedProjectProfit, modifiedData } = useContext(SelectedProjectContext);
   
   const [projectCost, setProjectCost] = useState(0);
   const [projectDuration, setProjectDuration] = useState(0);
   const [showEditProjectOverlay, setShowEditProjectOverlay] = useState(false);
   const [projectHasBeenEdited, setProjectHasBeenEdited] = useState(null);
-
-  const roi = -100
-  const color =  roi > 0 ? '#34C759' : "#FE2360"
+  const [projectRoi, setProjectRoi] = useState(0);
 
   const handleDurationInHours = duration => (duration / (1000 * 60 * 60)).toFixed(2);
   const durationInHours = handleDurationInHours(projectDuration);
 
   const handleRoi = (profit, cost) => Math.floor(((profit - cost) / cost) * 100);
-  const actualRoi = handleRoi(10, projectCost); 
+  const color =  projectRoi > 0 ? '#34C759' : "#FE2360"
 
   const actualCost = projectCost.toFixed(2);
 
@@ -28,19 +26,20 @@ const ProjectFinancials = () => {
     LogAndRoiServices.getLogs(selectedProject)
       .then((logs) => {
         if (selectedProject === null) {
-          console.log('First render in financials')
+          console.log('No selected project, so I can\'t calculate things');
         } else if (logs.length > 1) {
           const costArray = logs.map(element => element.cost);
           const durationArray = logs.map(element => element.duration);
+          const actualRoi = handleRoi(selectedProjectProfit, projectCost); 
           setProjectCost(costArray.reduce((total, element) => total + element));
           setProjectDuration(durationArray.reduce((total, element) => total + element));
-          console.log(`Project cost is ${projectCost} and project duration is ${projectDuration}`)
+          setProjectRoi(actualRoi);
         } else {
           console.log('There are no logs yet for this project');
         }
       })
       .catch(error => console.log(error))
-  }, [selectedProject, projectCost, projectDuration, projectHasBeenEdited]);
+  }, [selectedProject, projectCost, projectDuration, projectHasBeenEdited, modifiedData]);
 
   return(
       <div className='project-financials flex-column'>
@@ -68,9 +67,9 @@ const ProjectFinancials = () => {
             <KpiCard 
               className="card roi" 
               value={
-                actualRoi == Infinity
+                projectRoi == Infinity
                   ? `0 %`
-                  : `${actualRoi} %`
+                  : `${projectRoi} %`
               } 
               title="ROI" style={{ backgroundColor: color}}/>
           </div>

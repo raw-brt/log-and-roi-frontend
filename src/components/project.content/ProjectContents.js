@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './projectcontents.css'
 import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import ProjectFinancials from './project.financials/ProjectFinancials';
@@ -6,6 +6,12 @@ import LogList from './logs/LogList';
 
 const ProjectContents = () => {
   const { areThereProjects } = useContext(SelectedProjectContext);
+  const { modifiedData } = useContext(SelectedProjectContext);
+
+  useEffect(() => {
+    console.log('Project Contents re-rendered')
+  }, [modifiedData]);
+
   return (
     areThereProjects 
     ? (

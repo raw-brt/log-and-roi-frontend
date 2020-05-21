@@ -9,7 +9,7 @@ import stopIcon from '../../../assets/images/stop.svg';
 
 const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLog, setStoppedLog }) => {
   // Context variables import
-  const { selectedProjectCostPerHour } = useContext(SelectedProjectContext);
+  const { selectedProjectCostPerHour, modifiedData, setModifiedData } = useContext(SelectedProjectContext);
 
   // Component state
   const [timerValue, setTimerValue] = useState(initialDuration);
@@ -82,7 +82,7 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLo
                 setTimerValue(actualTime);
                 setStoppedLog(!stoppedLog);
                 setTimerHasStopped(true);
-                console.log(timerHasStopped)
+                setModifiedData(!modifiedData);
                 stop();
               }
               }></img>
