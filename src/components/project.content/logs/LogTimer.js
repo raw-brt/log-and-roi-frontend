@@ -7,7 +7,7 @@ import playIcon from '../../../assets/images/play.svg';
 import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 
-const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLog, setStoppedLog }) => {
+const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, setStoppedLog }) => {
   // Context variables import
   const { selectedProjectCostPerHour, modifiedData, setModifiedData } = useContext(SelectedProjectContext);
 
@@ -17,7 +17,7 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, cost, stoppedLo
 
   // Helper to calculate timer cost
   const calculateCost = (duration, costPerHour) => {
-    const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour + cost;
+    const logCost = ((duration / (1000 * 60 * 60)) % 24) * costPerHour;
     return logCost.toFixed(2);
   } 
 

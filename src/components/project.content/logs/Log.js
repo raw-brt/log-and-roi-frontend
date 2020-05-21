@@ -34,7 +34,7 @@ const Log = ({
         />
           {`${cost} €`}
       </div>
-      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} cost={cost}stoppedLog={stoppedLog} setStoppedLog={setStoppedLog} />
+      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog} />
       <div className='log-delete'>
         <img
           src={trashIcon}
