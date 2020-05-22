@@ -6,14 +6,14 @@ import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
 const DeleteLogOverlay = ({ 
   showDeleteLogOverlay, 
   setShowDeleteLogOverlay,
-  deletedLog,
-  setDeletedLog
  }) => {
   const { selectedLog } = useContext(SelectedLogContext);
 
   const deleteLog = (logId) => {
     LogAndRoiServices.deleteLog(logId)
-      .then(logId => `The log with the id ${logId} was deleted`)
+      .then(logId => {
+        console.log(`The log with the id ${logId} was deleted`)
+      })
       .catch(error => `Something went wrong when trying to delete the log with the id ${logId} -> ${error}`)
   };
 
@@ -39,10 +39,10 @@ const DeleteLogOverlay = ({
             className='delete-log-button btn btn-primary'
             type='button'
             onClick={() => {
-              deleteLog(selectedLog);
+              console.log(selectedLog)
               setShowDeleteLogOverlay(!showDeleteLogOverlay);
+              deleteLog(selectedLog);
               console.log(`The log with this identifier -> ${selectedLog} has been deleted`);
-              setDeletedLog(!deletedLog);
             }}
           >
             Delete log

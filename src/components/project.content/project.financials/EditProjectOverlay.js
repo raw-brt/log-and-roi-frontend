@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
@@ -15,6 +15,18 @@ const EditProjectOverlay = ({
   const [projectProfit, setProjectProfit] = useState(0);
 
   // Include here a first render get to populate form
+
+  useEffect(() => {
+    if (selectedProject !== null) {
+      LogAndRoiServices.getProjectDetail(selectedProject)
+        .then(project => {
+          setProjectName(project.projectName);
+          setProjectCost(project.costPerHour);
+          setProjectProfit(project.profit);
+        })
+        .catch(error => `Something went wrong when prepopulating edit project overlay form -> ${error}`)
+        }
+  }, [showEditProjectOverlay])
 
   const updateProject = () => {
     const projectData = {
