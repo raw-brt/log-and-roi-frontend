@@ -7,9 +7,9 @@ import playIcon from '../../../assets/images/play.svg';
 import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 
-const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, setStoppedLog }) => {
+const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, setStoppedLog, setTimerStopped, timerStopped }) => {
   // Context variables import
-  const { selectedProjectCostPerHour, modifiedData, setModifiedData } = useContext(SelectedProjectContext);
+  const { selectedProjectCostPerHour } = useContext(SelectedProjectContext);
 
   // Component state
   const [timerValue, setTimerValue] = useState(initialDuration);
@@ -34,13 +34,17 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
       LogAndRoiServices.updateLog(logData, identifier._id)
         .then(log => `The log with the id -> ${log._id} has been updated`)
         .catch(error => `Something when wrong -> ${error}`)
+
+        setTimerStopped(!timerStopped);
     }
   }
 
+  // Effect to update the timer counter
   useEffect(() => {
       setLogDuration(timerValue);
   }, [timerValue]);
 
+  // Effect to manage the timer cost value and persist it
   useEffect(() => {
     if (timerHasStopped === true) {
       handleUpdateLog();
@@ -48,7 +52,7 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
     } else {
       console.log(`Handleupdatelog useeffect has run but the function was not executed`)
     }
-  });
+  }, [timerHasStopped]);
 
   return (
     <Timer
@@ -82,7 +86,6 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
                 setTimerValue(actualTime);
                 setStoppedLog(!stoppedLog);
                 setTimerHasStopped(true);
-                setModifiedData(!modifiedData);
                 stop();
               }
               }></img>

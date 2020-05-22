@@ -11,7 +11,9 @@ const Log = ({
     cost,
     duration,
     showDeleteLogOverlay,
-    setShowDeleteLogOverlay
+    setShowDeleteLogOverlay,
+    timerStopped,
+    setTimerStopped
   }) => {
 
     // Used contexts
@@ -34,7 +36,7 @@ const Log = ({
         />
           {`${cost} €`}
       </div>
-      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog} />
+      <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog} setTimerStopped={setTimerStopped} timerStopped={timerStopped} />
       <div className='log-delete'>
         <img
           src={trashIcon}

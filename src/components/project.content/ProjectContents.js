@@ -6,11 +6,6 @@ import LogList from './logs/LogList';
 
 const ProjectContents = () => {
   const { areThereProjects } = useContext(SelectedProjectContext);
-  const { modifiedData } = useContext(SelectedProjectContext);
-
-  useEffect(() => {
-    console.log('Project Contents re-rendered')
-  }, [modifiedData]);
 
   return (
     areThereProjects 

@@ -13,6 +13,7 @@ const LogList = () => {
   const [showAddLogOverlay, setShowAddLogOverlay] = useState(false);
   const [showDeleteLogOverlay, setShowDeleteLogOverlay] = useState(false);
   const [deletedLog, setDeletedLog] = useState(false);
+  const [timerStopped, setTimerStopped] = useState(false);
 
   useEffect(() => {
     // Meter un condicional para que no haga la petición en el primer render, en que selectedProject es null
@@ -21,7 +22,7 @@ const LogList = () => {
         setLogs(logs);
       })
       .catch(error => console.log(error))
-  }, [selectedProject, showAddLogOverlay, deletedLog, showAddLogOverlay]);
+  }, [selectedProject, showAddLogOverlay, deletedLog, showAddLogOverlay, timerStopped]);
 
   return(
     <div className="log-list flex-column">
@@ -50,6 +51,8 @@ const LogList = () => {
                 duration={log.duration}
                 showDeleteLogOverlay={showDeleteLogOverlay}
                 setShowDeleteLogOverlay={setShowDeleteLogOverlay}
+                setTimerStopped={setTimerStopped}
+                timerStopped={timerStopped}
               />
             ))
           )}
