@@ -54,7 +54,6 @@ const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
 
   useEffect(() => {
     setActiveItem(selectedProject);
-    console.log(`PL updated. AItem is -> ${activeItem} and SP is ${selectedProject}`)
   }, [selectedProject, activeItem]);
 
   return (

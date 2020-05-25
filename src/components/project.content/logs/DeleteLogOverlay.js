@@ -1,21 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Modal } from 'react-bootstrap';
-import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
 
 const DeleteLogOverlay = ({ 
   showDeleteLogOverlay, 
   setShowDeleteLogOverlay,
+  deleteLog,
+  logHasBeenDeleted,
+  setLogHasBeenDeleted
  }) => {
   const { selectedLog } = useContext(SelectedLogContext);
 
-  const deleteLog = (logId) => {
-    LogAndRoiServices.deleteLog(logId)
-      .then(logId => {
-        console.log(`The log with the id ${logId} was deleted`)
-      })
-      .catch(error => `Something went wrong when trying to delete the log with the id ${logId} -> ${error}`)
-  };
+  const [isLogDeleted, setIsLogDeleted] = useState(false);
+
+  useEffect(() => {
+    if (isLogDeleted === true) {
+      setShowDeleteLogOverlay(!showDeleteLogOverlay)
+      setLogHasBeenDeleted(!logHasBeenDeleted)
+    };
+  }, [isLogDeleted]);
 
   return (
     showDeleteLogOverlay && (
@@ -39,10 +42,9 @@ const DeleteLogOverlay = ({
             className='delete-log-button btn btn-primary'
             type='button'
             onClick={() => {
-              console.log(selectedLog)
-              setShowDeleteLogOverlay(!showDeleteLogOverlay);
               deleteLog(selectedLog);
-              console.log(`The log with this identifier -> ${selectedLog} has been deleted`);
+              // setShowDeleteLogOverlay(!showDeleteLogOverlay);
+              setIsLogDeleted(!isLogDeleted);
             }}
           >
             Delete log

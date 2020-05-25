@@ -62,8 +62,8 @@ const DeleteProjectOverlay = ({
                   </>
               :
                 <>
-                  <button>Go home
-                    
+                  <button>
+                    Go home  
                   </button>
                 </>
           }
