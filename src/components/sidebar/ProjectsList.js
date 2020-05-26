@@ -38,10 +38,9 @@ const ProjectsList = ({ projectHasBeenCreated, showAddOverlay }) => {
   useEffect(() => {
     LogAndRoiServices.getProjects(currentUser)
       .then((projects) => {
-        if (projects.length == 0) {
+        if (projects.length === 0) {
           console.log('You have no projects yet')
         } else {
-          console.log(projects)
           setProjectsList(projects);
           setSelectedProject(projects[0]._id);
           setSelectedProjectName(projects[0].projectName);

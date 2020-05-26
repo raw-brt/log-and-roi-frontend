@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import '../user/userStyles.css';
 import LogAndRoiServices from '../../services/LogAndRoiServices';
-import AuthContext from '../../contexts/AuthContext';
-import { Redirect, Link } from 'react-router-dom';
 import logo from '../../assets/images/logo_vertical.svg';
 import ReCAPTCHA from 'react-google-recaptcha';
 

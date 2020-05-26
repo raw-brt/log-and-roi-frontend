@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import Log from './Log';
 import AddLogOverlay from './AddLogOverlay'
 import { SelectedProjectContext } from '../../../contexts/SelectedProjectContext';
+import { SelectedLogContext } from '../../../contexts/SelectedLogContext';
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import add from '../../../assets/images/Add icon white.svg';
 import DeleteLogOverlay from './DeleteLogOverlay';
 
 const LogList = () => {
   const { selectedProject } = useContext(SelectedProjectContext);
+  const { selectedLog } = useContext(SelectedLogContext);
 
   const [logs, setLogs] = useState([]);
   const [showAddLogOverlay, setShowAddLogOverlay] = useState(false);
@@ -16,21 +18,22 @@ const LogList = () => {
   const [logHasBeenDeleted, setLogHasBeenDeleted] = useState(false);
 
   const deleteLog = (logId) => {
-    LogAndRoiServices.deleteLog(logId)
+    if (logId === selectedLog) {
+      LogAndRoiServices.deleteLog(logId)
       .then(() => console.log(`The log with the id ${logId} was deleted`))
       .catch(error => `Something went wrong when trying to delete the log with the id ${logId} -> ${error}`)
+    }
   };
 
   useEffect(() => {
-    if (selectedProject !== null) {
       LogAndRoiServices.getLogs(selectedProject)
         .then((logs) => {
           setLogs(logs);
           console.log('Log list re-rendered after deleting one log')
         })
         .catch(error => console.log(error))
-    }
   }, [selectedProject, showAddLogOverlay, timerStopped, logHasBeenDeleted]);
+
 
   return(
     logs.length > 0 ? (

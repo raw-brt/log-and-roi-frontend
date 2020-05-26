@@ -58,7 +58,7 @@ const ProjectFinancials = () => {
             <KpiCard 
               className="card profit" 
               value={ 
-                selectedProjectProfit != undefined
+                selectedProjectProfit !== undefined
                  ? `${selectedProjectProfit} €`
                  :  `0 €`
                 } 
@@ -67,7 +67,7 @@ const ProjectFinancials = () => {
             <KpiCard 
               className="card roi" 
               value={
-                projectRoi == Infinity
+                projectRoi === Infinity || isNaN(projectRoi) === true
                   ? `0 %`
                   : `${projectRoi} %`
               } 

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import './projectcontents.css'
 import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import ProjectFinancials from './project.financials/ProjectFinancials';
