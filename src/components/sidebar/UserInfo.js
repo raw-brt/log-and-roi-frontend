@@ -2,13 +2,16 @@ import React, { useState, useContext } from 'react';
 import AuthContext from '../../contexts/AuthContext';
 import logout  from '../../assets/images/logout.svg';
 import trash from '../../assets/images/trash.svg';
+import edit from '../../assets/images/edit.svg';
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import { Redirect } from 'react-router-dom';
+import EditUserOverlay from './EditUserOverlay';
 
 const UserInfo = () => {
   const { currentUser } = useContext(AuthContext);
 
   const [loggedOut, setLoggedOut] = useState(false);
+  const [showEditOverlay, setShowEditOverlay] = useState(false);
 
   const handleLogout = () => {
     LogAndRoiServices.logout()
@@ -39,7 +42,7 @@ const UserInfo = () => {
         <img 
           src={logout}
           className='user-logout-icon'
-          alt='User settings'
+          alt='Logout'
           role='button'
           onClick={() => {
             handleLogout()
@@ -47,9 +50,18 @@ const UserInfo = () => {
           }
         />
         <img 
+          src={edit}
+          className='user-edit-icon'
+          alt='Edit user'
+          role='button'
+          onClick={() => {
+            setShowEditOverlay(!showEditOverlay);
+          }}
+        />
+        <img 
           src={trash}
           className='user-delete-icon'
-          alt='User settings'
+          alt='Delete user'
           role='button'
           onClick={() => {
             if (window.confirm(`Are you sure you want to delete your user account?.This can not be undone ${currentUser._id}`) === true) {
@@ -57,6 +69,10 @@ const UserInfo = () => {
               }
             }
           }
+        />
+        <EditUserOverlay
+          showEditOverlay={showEditOverlay}
+          setShowEditOverlay={setShowEditOverlay}
         />
       </div>
     </div>

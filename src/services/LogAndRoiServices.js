@@ -23,6 +23,7 @@ const logout = () => http.post('/logout');
 const register = (data) => http.post('/users', data);
 const deleteUser = (userId) => http.delete(`/users/${userId}`)
 const validateUser = (validateToken) => http.get(`/users/${validateToken}/validate`);
+const updateUser= (userId, data) => http.patch(`/users/${userId}`, data);
 
 //Projects
 const getProjects = (user) => http.get(`/user/${user.id}/projects`);
@@ -44,6 +45,7 @@ export default {
   register,
   deleteUser,
   validateUser,
+  updateUser,
   getProjects,
   getProjectDetail,
   createProject,
