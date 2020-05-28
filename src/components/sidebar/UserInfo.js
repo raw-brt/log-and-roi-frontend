@@ -13,6 +13,15 @@ const UserInfo = () => {
   const [loggedOut, setLoggedOut] = useState(false);
   const [showEditOverlay, setShowEditOverlay] = useState(false);
 
+  const updateUser = (updatedUserData) => {
+    LogAndRoiServices.updateUser(currentUser._id, updatedUserData)
+      .then(() => {
+        console.log('User updated');
+        setShowEditOverlay(!showEditOverlay);
+      })
+      .catch(error => `Something went wrong ${error}`)
+  }
+  
   const handleLogout = () => {
     LogAndRoiServices.logout()
       .then(() => {
@@ -73,6 +82,7 @@ const UserInfo = () => {
         <EditUserOverlay
           showEditOverlay={showEditOverlay}
           setShowEditOverlay={setShowEditOverlay}
+          updateUser={updateUser}
         />
       </div>
     </div>
