@@ -14,7 +14,7 @@ const UserInfo = () => {
   const [showEditOverlay, setShowEditOverlay] = useState(false);
 
   const updateUser = (updatedUserData) => {
-    LogAndRoiServices.updateUser(currentUser._id, updatedUserData)
+    LogAndRoiServices.updateUser(currentUser.id, updatedUserData)
       .then(() => {
         console.log('User updated');
         setShowEditOverlay(!showEditOverlay);

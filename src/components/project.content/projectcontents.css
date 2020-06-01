@@ -5,11 +5,6 @@
   width: 100%;
 }
 
-/* .project-contents {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-} */
 .logs {
   width: 100%;
 }
@@ -50,22 +45,6 @@
   font-size: 2rem;
 }
 
-/* .custom-btn {
-  display: flex;
-  border: none;
-  border-radius: 50px;
-  background-color: #50E3C2;
-  color: white;
-  padding: 0.7rem 1rem;
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.custom-btn * {
-  justify-content: center;
-  align-items: center;
-} */
-
 .log {
   display: flex;
   align-items: baseline;
@@ -92,6 +71,11 @@
   justify-content: space-between;
   height: 9.37rem;
   margin-top: 0.625rem;
+}
+
+.project-financial-cards {
+  display: flex;
+  flex-direction: row; 
 }
 
 /* KPI Cards */

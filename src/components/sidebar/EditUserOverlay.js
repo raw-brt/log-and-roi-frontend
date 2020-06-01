@@ -4,12 +4,12 @@ import AuthContext from '../../contexts/AuthContext';
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-const EditUserOverlay = ({ showEditOverlay, setShowEditOverlay, updateUserData }) => {
+const EditUserOverlay = ({ showEditOverlay, setShowEditOverlay, updateUser }) => {
   const { currentUser } = useContext(AuthContext);
 
-  const [newEmail, setNewEmail] = useState(null);
-  const [newPassword, setNewPassword] = useState(null);
-  const [newPasswordConfirmation, setNewPasswordConfirmation] = useState(null);
+  const [newEmail, setNewEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newPasswordConfirmation, setNewPasswordConfirmation] = useState('');
 
   const handleUpdateUser = () => {
     const updatedUserData = {
@@ -17,13 +17,13 @@ const EditUserOverlay = ({ showEditOverlay, setShowEditOverlay, updateUserData }
       password: newPassword
     }
     
-    if (newEmail !== null || newPassword || null && newPasswordConfirmation || null) {
+    if (newEmail === '' || newPassword === '' || newPasswordConfirmation === '') {
       alert('Some of the values you entered are not valid. Check them and try again, please.')
       } else if (newPassword !== newPasswordConfirmation) {
       alert('Password and password confirmation don\'t match. Please, try again')
       } else {
         if (window.confirm(`Are you sure you want to update your user account?`) === true) {
-          updateUserData(updatedUserData)
+          updateUser(updatedUserData)
           }
         }
   
@@ -49,7 +49,8 @@ const EditUserOverlay = ({ showEditOverlay, setShowEditOverlay, updateUserData }
           label='Email'
           placeholder={currentUser.email}
           type='text'
-          pattern={`${EMAIL_PATTERN}`}
+          // pattern={`${EMAIL_PATTERN}`}
+          pattern={EMAIL_PATTERN}
           title='You must input a valid email'
           value={newEmail}
           onChange={event => setNewEmail(event.target.value)}

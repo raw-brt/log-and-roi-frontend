@@ -53,7 +53,7 @@ const ProjectFinancials = () => {
             onClick={() => setShowEditProjectOverlay(!showEditProjectOverlay)}
           />
         </div>
-        <div className='project-financial-cards row'>
+        <div className='project-financial-cards'>
           <div className="profit-cost-column col-sm">
             <KpiCard 
               className="card profit" 

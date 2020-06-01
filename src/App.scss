@@ -270,3 +270,39 @@ li {
 .delete-icon {
   display: none;
 }
+
+// Responsive elements
+
+.responsive-navbar {
+  display: none;
+  height: 100px;
+  background-color: #221E1F;
+
+}
+
+// Media queries
+@media  (max-width: 1135px) {
+  .home .sidebar-wrapper {
+    display: none;
+  }
+
+  .project-contents .project-financial-cards {
+    flex-direction: column; 
+  }
+
+  .project-financial-cards .card {
+    flex-direction: row;
+    height: 5rem;
+    align-items: center;
+  }
+
+  .project-financial-cards .card h6, h5 {
+    margin: 0;
+  }
+
+  .profit-cost-column, .roi-column {
+    padding: 0 !important;
+  }
+
+
+}

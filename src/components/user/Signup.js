@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import '../user/userStyles.css';
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import logo from '../../assets/images/logo_vertical.svg';
+import { Redirect } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -37,7 +38,7 @@ const Signup = () => {
       })
     }
 
-  //  if (userHasBeenCreated) return <Redirect to='/login' />
+   if (userHasBeenCreated) return <Redirect to='/login' />
 
   return (
     errorMessage ? (
