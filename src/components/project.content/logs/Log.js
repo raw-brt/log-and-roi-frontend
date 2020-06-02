@@ -26,31 +26,33 @@ const Log = ({
   return (
     <>
       <li key={identifier._id}>
-        <div className="log flex-row justify-content-between align-items-center">
-          <div>
-          <p className="log-title">{title}</p>
-          <p className="log-date">{date}</p>
+        <div className="log d-flex">
+          <div className='log-name'>
+            <p className="log-title">{title}</p>
+            <p className="log-date">{date}</p>
           </div>
-          <div className="log-cost d-flex align-items-center">
-            <img
-              src={dollar}
-              alt="dollar"
-              className="mr-1"
-              style={{ maxWidth: "1.75rem" }}
-            />
-              {`${cost} €`}
-          </div>
-          <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog} setTimerStopped={setTimerStopped} timerStopped={timerStopped} />
-          <div className='log-delete'>
-            <img
-              src={trashIcon}
-              alt='delete'
-              className='log-delete-icon mr-1'
-              onClick={() => {
-                setSelectedLog(identifier._id);
-                setShowDeleteLogOverlay(!showDeleteLogOverlay);
-              }}
-            />
+          <div className='log-options'>
+            <div className="log-cost d-flex align-items-center">
+              <img
+                src={dollar}
+                alt="dollar"
+                className="mr-1"
+                style={{ maxWidth: "1.75rem" }}
+              />
+                {`${cost} €`}
+            </div>
+            <LogTimer className='log-timer' initialDuration= {duration} setLogDuration={setLogDuration} identifier={identifier} stoppedLog={stoppedLog} setStoppedLog={setStoppedLog} setTimerStopped={setTimerStopped} timerStopped={timerStopped} />
+            <div className='log-delete'>
+              <img
+                src={trashIcon}
+                alt='delete'
+                className='log-delete-icon mr-1'
+                onClick={() => {
+                  setSelectedLog(identifier._id);
+                  setShowDeleteLogOverlay(!showDeleteLogOverlay);
+                }}
+              />
+            </div>
           </div>
         </div>
       </li>

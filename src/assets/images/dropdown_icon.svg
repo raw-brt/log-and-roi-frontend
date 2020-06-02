@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Dropdown</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dropdown">
+            <g id="Dropdown-menu">
+                <g>
+                    <circle id="Oval" fill="#50E3C2" cx="12" cy="12" r="12"></circle>
+                    <path d="M12.3886198,10.1609593 L16.8390207,14.6113602 C17.0536598,14.8259993 17.0536598,15.1739835 16.8390207,15.3885997 L16.3199526,15.9076677 C16.1056799,16.1219405 15.7584056,16.1223526 15.5436291,15.9085837 L11.9999886,12.3815684 L8.45637087,15.9086066 C8.24159437,16.1223755 7.89432007,16.1219634 7.68004736,15.9076906 L7.16097933,15.3886226 C6.94634022,15.1739835 6.94634022,14.8259993 7.16097933,14.6113831 L11.6113802,10.1609822 C11.8259965,9.94634309 12.1739806,9.94634309 12.3886198,10.1609593 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero" transform="translate(12.000000, 13.034332) rotate(180.000000) translate(-12.000000, -13.034332) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

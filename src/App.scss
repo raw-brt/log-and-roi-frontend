@@ -172,6 +172,38 @@ li {
   cursor: pointer;
 }
 
+// Responsive navbar
+
+.responsive-navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100vw;
+  height: 5.125rem;
+  background-color: #221E1F;
+  justify-content: space-between;
+  align-items: center;
+  // z-index: 1000;
+}
+
+.navbar-logo {
+  width: 6.25rem;
+  height: auto;
+  margin-left: 1rem;
+}
+
+.logo-responsive {
+  width: 9.25rem;
+  height: auto;
+}
+
+.dropdown-button {
+  width: 1.75rem ;
+  height: auto;
+  margin-right: 1rem;
+}
+
 // Project contents
 .project-contents {
   overflow: auto;
@@ -196,6 +228,16 @@ li {
 }
 
 // Log list
+.log {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-name {
+  flex-basis: 15rem;
+}
+
 .log-list-header h3 {
   margin: 33px 0px 20px 22px;
 }
@@ -233,6 +275,13 @@ li {
 
 .log-timer {
   flex-basis: 2rem;
+}
+
+.log-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-basis: 40rem;
 }
 
 .control-btn {
@@ -281,9 +330,17 @@ li {
 }
 
 // Media queries
-@media  (max-width: 1135px) {
+@media  (max-width: 1150px) {
   .home .sidebar-wrapper {
+    position: fixed;
+    width: 100vw;
+    z-index: 1000;
     display: none;
+  }
+
+  .home .project-contents {
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .project-contents .project-financial-cards {
@@ -302,6 +359,31 @@ li {
 
   .profit-cost-column, .roi-column {
     padding: 0 !important;
+  }
+
+  .logs .log {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .log-name {
+    flex-basis: 3rem;
+  }
+
+  .log-options {
+    flex-basis: 5rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #sidebar {
+    margin: auto;
+  }
+
+  .responsive-navbar {
+    display: flex;
   }
 
 
