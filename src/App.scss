@@ -1,5 +1,4 @@
 // Font import
-
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 
 // General settings
@@ -7,6 +6,10 @@
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 }
 
 *, *:before, *:after {
@@ -102,10 +105,30 @@ $medium-grey: #6D7276;
 .sidebar-wrapper {
   display: flex;
   flex: 0 0 20.625rem;
+  background-color: #221E1F;
 }
 
 .sidebar-header {
   margin-top: 20px;
+}
+
+#sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 19rem;
+}
+
+#header-title {
+  margin-left: 20px;
+  color: #50E3C2;
+}
+
+#sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  flex-basis: 100%;
 }
 
 .add-project-btn {
@@ -129,17 +152,6 @@ $medium-grey: #6D7276;
 
 .project-inactive {
   color: $medium-grey;
-}
-
-#sidebar {
-  flex-basis: 19rem;
-}
-
-#sidebar ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  flex-basis: 100%;
 }
 
 .project-list {
@@ -172,36 +184,17 @@ li {
   cursor: pointer;
 }
 
-// Responsive navbar
-
-.responsive-navbar {
-  position: relative;
-  top: 0;
-  left: 0;
-  display: none;
-  width: 100vw;
-  height: 5.125rem;
+/* List element */
+.list-group-item {
   background-color: #221E1F;
-  justify-content: space-between;
-  align-items: center;
-  // z-index: 1000;
+  color: #50E3C2;
+  text-align: left;
 }
 
-.navbar-logo {
-  width: 6.25rem;
-  height: auto;
-  margin-left: 1rem;
-}
-
-.logo-responsive {
-  width: 9.25rem;
-  height: auto;
-}
-
-.dropdown-button {
-  width: 1.75rem ;
-  height: auto;
-  margin-right: 1rem;
+/* User info */
+.username, .user-mail {
+  margin-left: 20px;
+  color: #fff;
 }
 
 // Project contents
@@ -209,14 +202,24 @@ li {
   overflow: auto;
   justify-content: flex-start;
   height: 100vh;
+  flex: 0 0 58.333333%;
+  max-width: 58.333333%;
+}
+
+.home .project.contents::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .project-financials {
-  margin: 20px;
+  margin: 1.25rem;
 }
 
 .project-financials h3 {
-  margin-left: 15px;
+  margin-left: 0.9375rem;
+}
+
+.project-contents .project-financials-header {
+  margin-right: 0;
 }
 
 .edit-project-icon {
@@ -228,6 +231,10 @@ li {
 }
 
 // Log list
+.log-list {
+  margin-right: 1.25rem;
+}
+
 .log {
   flex-direction: row;
   justify-content: space-between;
@@ -299,7 +306,6 @@ li {
 }
 
 // Modals
-
 .add-project-modal {
   border-radius: 0.4375rem;
 }
@@ -323,10 +329,34 @@ li {
 // Responsive elements
 
 .responsive-navbar {
+  position: relative;
+  top: 0;
+  left: 0;
   display: none;
-  height: 100px;
+  width: auto;
+  height: 5rem;
   background-color: #221E1F;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.navbar-logo {
+  width: 6.25rem;
+  height: auto;
+  margin-left: 1rem;
+}
+
+.logo-responsive {
+  width: 9.375rem;
+  height: auto;
+  margin: 2.5rem 0;
+}
+
+.dropdown-button {
+  width: 1.75rem ;
+  height: auto;
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 // Media queries
@@ -334,13 +364,34 @@ li {
   .home .sidebar-wrapper {
     position: fixed;
     width: 100vw;
-    z-index: 1000;
     display: none;
+  }
+
+  .home .sidebar-wrapper-dropped {
+    position: fixed;
+    top: 5rem;
+    width: 100%;
+    height: auto;
+    z-index: 1000;
+    display: flex;
+    background-color: #221E1F;
+    border-top: 2px solid $fluor-green;
   }
 
   .home .project-contents {
     margin: 0 !important;
     padding: 0 !important;
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+
+  #sidebar {
+    height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    flex-basis: 19rem;
+    margin: auto;
   }
 
   .project-contents .project-financial-cards {
@@ -378,12 +429,9 @@ li {
     align-items: center;
   }
 
-  #sidebar {
-    margin: auto;
-  }
-
   .responsive-navbar {
     display: flex;
+    height: 5rem;
   }
 
 

@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ProjectsList from "./ProjectsList";
-import "../sidebar/sidebar.css";
 import UserInfo from "./UserInfo";
 import AddProjectOverlay from "./AddProjectOverlay";
 import add from "../../../src/assets/images/Add icon.svg";
+import { NavBarContext } from '../../contexts/NavBarContext';
 
 const Sidebar = () => {
+  const {isSidebarDropped} = useContext(NavBarContext);
 
   const [showAddOverlay, setShowAddOverlay] = useState(false);
   const [projectHasBeenCreated, setProjectHasBeenCreated] = useState(false);
 
+  let isResponsive = window.innerWidth < 1150; 
+
   return (
-    <div className="sidebar-wrapper">
+    <div className={
+      isSidebarDropped && isResponsive
+        ? "sidebar-wrapper-dropped"
+        : "sidebar-wrapper"
+      }>
       <nav id="sidebar">
         <div className="sidebar-header d-flex justify-content-between">
           <h3 id="header-title">Projects</h3>

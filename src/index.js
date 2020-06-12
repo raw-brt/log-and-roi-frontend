@@ -7,14 +7,17 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthContextProvider } from './contexts/AuthContext';
 import SelectedProjectProvider from './contexts/SelectedProjectContext';
 import { SelectedLogProvider } from './contexts/SelectedLogContext';
+import { NavBarProvider } from './contexts/NavBarContext';
 
 ReactDOM.render((
   <AuthContextProvider>
     <SelectedProjectProvider>
       <SelectedLogProvider>
-        <Router>
-          <App />
-        </Router>
+        <NavBarProvider>
+          <Router>
+            <App />
+          </Router>
+        </NavBarProvider>
       </SelectedLogProvider>
     </SelectedProjectProvider>
   </AuthContextProvider>
