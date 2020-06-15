@@ -4,7 +4,14 @@ import AuthContext from '../../contexts/AuthContext';
 
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-const EditUserOverlay = ({ showEditOverlay, setShowEditOverlay, updateUser }) => {
+const EditUserOverlay = ({ 
+    showEditOverlay, 
+    setShowEditOverlay, 
+    updateUser ,
+    handleLogout,
+    handleDeleteUser
+  }) => {
+  
   const { currentUser } = useContext(AuthContext);
 
   const [newEmail, setNewEmail] = useState('');
@@ -73,21 +80,42 @@ const EditUserOverlay = ({ showEditOverlay, setShowEditOverlay, updateUser }) =>
           value={newPasswordConfirmation}
           onChange={event => setNewPasswordConfirmation(event.target.value)}
         />
+        <div>
+          <button
+            className='logout-button btn btn-secondary'
+            type='button'
+            onClick={() => handleLogout()}
+          >
+            Logout
+          </button>
+          <button
+            className='delete-user-button btn btn-warning ml-3'
+            type='button'
+            onClick={() => {
+                if (window.confirm(`Are you sure you want to delete your user account?.This can not be undone`)) {
+                  handleDeleteUser(currentUser._id)
+                  }
+                }
+              }
+          >
+            Delete account
+          </button>
+        </div>
       </Modal.Body>
       <Modal.Footer>
-        <button 
-          className='edit-user-button btn btn-primary'
-          type='button'
-          onClick={() => handleUpdateUser()}
-        >
-          Save changes
-        </button>
         <button
           className='cancel-edit-button btn btn-secondary'
           type='button'
           onClick={() => setShowEditOverlay(!showEditOverlay)}
         >
           Cancel
+        </button>
+        <button 
+          className='edit-user-button btn btn-primary'
+          type='button'
+          onClick={() => handleUpdateUser()}
+        >
+          Save changes
         </button>
       </Modal.Footer>
     </Modal>

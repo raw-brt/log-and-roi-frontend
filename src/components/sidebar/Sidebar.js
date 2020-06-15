@@ -11,7 +11,8 @@ const Sidebar = () => {
   const [showAddOverlay, setShowAddOverlay] = useState(false);
   const [projectHasBeenCreated, setProjectHasBeenCreated] = useState(false);
 
-  let isResponsive = window.innerWidth < 1150; 
+
+  let isResponsive = window.innerWidth < 1150;
 
   return (
     <div className={

@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../../contexts/AuthContext';
-import logout  from '../../assets/images/logout.svg';
-import trash from '../../assets/images/trash.svg';
-import edit from '../../assets/images/edit.svg';
+import settings from '../../assets/images/user_settings.svg';
 import LogAndRoiServices from '../../services/LogAndRoiServices';
 import { Redirect } from 'react-router-dom';
 import EditUserOverlay from './EditUserOverlay';
@@ -47,42 +45,20 @@ const UserInfo = () => {
       <div className="user-data col">
         <h6 className="username">{currentUser.email}</h6>
       </div>
-      <div className="user-settings btn-group col d-flex justify-content-around align-top">
+      <div className="user-settings btn-group col d-flex justify-content-end align-top">
         <img 
-          src={logout}
-          className='user-logout-icon'
-          alt='Logout'
-          role='button'
-          onClick={() => {
-            handleLogout()
-            }
-          }
-        />
-        <img 
-          src={edit}
+          src={settings}
           className='user-edit-icon'
           alt='Edit user'
           role='button'
-          onClick={() => {
-            setShowEditOverlay(!showEditOverlay);
-          }}
-        />
-        <img 
-          src={trash}
-          className='user-delete-icon'
-          alt='Delete user'
-          role='button'
-          onClick={() => {
-            if (window.confirm(`Are you sure you want to delete your user account?.This can not be undone ${currentUser._id}`) === true) {
-              handleDeleteUser(currentUser._id)
-              }
-            }
-          }
+          onClick={() => setShowEditOverlay(!showEditOverlay)}
         />
         <EditUserOverlay
           showEditOverlay={showEditOverlay}
           setShowEditOverlay={setShowEditOverlay}
           updateUser={updateUser}
+          handleLogout={handleLogout}
+          handleDeleteUser={handleDeleteUser}
         />
       </div>
     </div>
