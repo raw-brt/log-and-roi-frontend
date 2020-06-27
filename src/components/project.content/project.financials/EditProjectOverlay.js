@@ -6,7 +6,9 @@ import LogAndRoiServices from '../../../services/LogAndRoiServices';
 const EditProjectOverlay = ({ 
   showEditProjectOverlay,
   setShowEditProjectOverlay,
-  setProjectHasBeenEdited 
+  setProjectHasBeenEdited,
+  updatedProject,
+  setUpdatedProject 
 }) => {
   const { selectedProject, setSelectedProjectCostPerHour } = useContext(SelectedProjectContext);
 
@@ -15,7 +17,6 @@ const EditProjectOverlay = ({
   const [projectProfit, setProjectProfit] = useState(0);
 
   // Include here a first render get to populate form
-
   useEffect(() => {
     if (selectedProject !== null) {
       LogAndRoiServices.getProjectDetail(selectedProject)
@@ -26,7 +27,7 @@ const EditProjectOverlay = ({
         })
         .catch(error => `Something went wrong when prepopulating edit project overlay form -> ${error}`)
         }
-  }, [showEditProjectOverlay])
+  }, [showEditProjectOverlay]);
 
   const updateProject = () => {
     const projectData = {
@@ -41,6 +42,10 @@ const EditProjectOverlay = ({
         console.log(`The project ${project} has been updated`);
       })
       .catch((error) => console.log(error))
+
+      setShowEditProjectOverlay(!showEditProjectOverlay);
+      setProjectHasBeenEdited(projectName);
+      setUpdatedProject(!updatedProject);
   }
 
   return(
@@ -90,11 +95,7 @@ const EditProjectOverlay = ({
           <button
             className='edit-project-button btn btn-primary'
             type='button'
-            onClick={() => {
-              updateProject();
-              setShowEditProjectOverlay(!showEditProjectOverlay);
-              setProjectHasBeenEdited(projectName);
-            }}
+            onClick={() => updateProject()}
           >
             Confirm changes
           </button>

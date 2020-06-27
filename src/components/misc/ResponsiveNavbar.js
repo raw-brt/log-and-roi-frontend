@@ -7,6 +7,7 @@ import dropup from '../../assets/images/dropup.svg'
 const ResponsiveNavbar = () => {
   const { isSidebarDropped, setIsSidebarDropped } = useContext(NavBarContext);
 
+  // Check viewport width
   let isResponsive = window.innerWidth < 1150;
 
   if (isSidebarDropped && !isResponsive) {

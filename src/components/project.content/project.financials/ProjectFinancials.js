@@ -5,8 +5,11 @@ import { SelectedProjectContext }  from '../../../contexts/SelectedProjectContex
 import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import EditProjectOverlay from './EditProjectOverlay';
 
-const ProjectFinancials = () => {
-  const { selectedProject, selectedProjectName, selectedProjectProfit, modifiedData } = useContext(SelectedProjectContext);
+const ProjectFinancials = ({ updatedTimer, updatedProject, setUpdatedProject }) => {
+  const { selectedProject,
+          selectedProjectName, 
+          selectedProjectProfit, 
+          modifiedData } = useContext(SelectedProjectContext);
   
   const [projectCost, setProjectCost] = useState(0);
   const [projectDuration, setProjectDuration] = useState(0);
@@ -39,7 +42,7 @@ const ProjectFinancials = () => {
         }
       })
       .catch(error => console.log(error))
-  }, [selectedProject, projectCost, projectDuration, projectHasBeenEdited, modifiedData]);
+  }, [selectedProject, projectCost, projectDuration, projectHasBeenEdited, modifiedData, updatedTimer]);
 
   return(
       <div className='project-financials flex-column'>
@@ -82,6 +85,8 @@ const ProjectFinancials = () => {
         showEditProjectOverlay={showEditProjectOverlay}
         setShowEditProjectOverlay={setShowEditProjectOverlay}
         setProjectHasBeenEdited={setProjectHasBeenEdited}
+        updatedProject={updatedProject}
+        setUpdatedProject={setUpdatedProject}
       />
     </div>
   )

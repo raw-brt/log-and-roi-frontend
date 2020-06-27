@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import './projectcontents.css'
 import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import ProjectFinancials from './project.financials/ProjectFinancials';
@@ -7,14 +7,23 @@ import ResponsiveNavbar from '../misc/ResponsiveNavbar';
 
 const ProjectContents = () => {
   const { areThereProjects } = useContext(SelectedProjectContext);
+  const [updatedTimer, setUpdatedTimer] = useState(false);
+  const [updatedProject, setUpdatedProject] = useState(false);
 
   return (
     areThereProjects 
     ? (
       <div className='project-contents d-flex flex-column mx-auto'>
         <ResponsiveNavbar />
-        <ProjectFinancials />
-        <LogList />
+        <ProjectFinancials
+          updatedTimer={updatedTimer}
+          updatedProject={updatedProject}
+          setUpdatedProject={setUpdatedProject}
+        />
+        <LogList
+          updatedTimer={updatedTimer}
+          setUpdatedTimer={setUpdatedTimer}
+        />
       </div>
     )
     : (

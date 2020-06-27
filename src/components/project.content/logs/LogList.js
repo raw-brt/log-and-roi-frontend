@@ -7,7 +7,7 @@ import LogAndRoiServices from '../../../services/LogAndRoiServices';
 import add from '../../../assets/images/Add icon white.svg';
 import DeleteLogOverlay from './DeleteLogOverlay';
 
-const LogList = () => {
+const LogList = ({ updatedTimer, setUpdatedTimer }) => {
   const { selectedProject } = useContext(SelectedProjectContext);
   const { selectedLog } = useContext(SelectedLogContext);
 
@@ -65,6 +65,8 @@ const LogList = () => {
                   setShowDeleteLogOverlay={setShowDeleteLogOverlay}
                   setTimerStopped={setTimerStopped}
                   timerStopped={timerStopped}
+                  updatedTimer={updatedTimer}
+                  setUpdatedTimer={setUpdatedTimer}
                 />
               ))
             )}

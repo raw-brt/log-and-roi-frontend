@@ -7,7 +7,17 @@ import playIcon from '../../../assets/images/play.svg';
 import pauseIcon from '../../../assets/images/pause.svg';
 import stopIcon from '../../../assets/images/stop.svg';
 
-const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, setStoppedLog, setTimerStopped, timerStopped }) => {
+const LogTimer = ({ 
+  setLogDuration, 
+  initialDuration, 
+  identifier, 
+  stoppedLog, 
+  setStoppedLog, 
+  setTimerStopped, 
+  timerStopped,
+  updatedTimer,
+  setUpdatedTimer 
+}) => {
   // Context variables import
   const { selectedProjectCostPerHour } = useContext(SelectedProjectContext);
 
@@ -36,6 +46,7 @@ const LogTimer = ({ setLogDuration, initialDuration, identifier, stoppedLog, set
         .catch(error => `Something when wrong -> ${error}`)
 
         setTimerStopped(!timerStopped);
+        setUpdatedTimer(!updatedTimer);
     }
   }
 
